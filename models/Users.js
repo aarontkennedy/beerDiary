@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
 
 
     Users.associate = function (models) {
-        Users.hasMany(models.Itinerary, {
+        Users.hasMany(models.BeerConsumed, {
             onDelete: "cascade"
         });
     };

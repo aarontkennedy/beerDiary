@@ -5,21 +5,36 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING
             //allowNull: false - google sometimes doesn't give names
         }, 
-        brewer: {
+        brewery: {
             type: DataTypes.STRING
+            //allowNull: false - google sometimes doesn't give names
+        },  
+        category: {
+            type: DataTypes.STRING
+            //allowNull: false - google sometimes doesn't give names
+        }, 
+        style: {
+            type: DataTypes.STRING
+            //allowNull: false - google sometimes doesn't give names
+        }, 
+        abv: {
+            type: DataTypes.FLOAT
+            //allowNull: false - google sometimes doesn't give names
+        }, 
+        ibu: {
+            type: DataTypes.FLOAT
+            //allowNull: false - google sometimes doesn't give names
+        },  
+        style: {
+            type: DataTypes.TEXT
             //allowNull: false - google sometimes doesn't give names
         }
     });
 
 
     Beers.associate = function (models) {
-        Beers.hasMany(models.Waypoint, {
+        Beers.hasMany(models.BeerConsumed, {
             onDelete: "cascade"
-        });
-        Beers.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
         });
     };
 
