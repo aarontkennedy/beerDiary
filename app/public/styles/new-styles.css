@@ -1,6 +1,17 @@
-html {
+body, html {
+    height: 100%;
+}
+.jumbotron{
+    background: rgb(255,255,255, .5);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.navbar{
+    background: rgb(255,255,255, .5);
+}
+.bg-1 { 
     /* The image used */
-    background-image: url("https://images.designtrends.com/wp-content/uploads/2015/11/06084012/Dark-Brown-Wood-Texture11.jpg");
+    background-image: url("https://i.ytimg.com/vi/fOQRn1Spopc/maxresdefault.jpg");
 
     /* Full height */
     height: 100%; 
@@ -9,4 +20,32 @@ html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-};
+}
+.bg-2 { 
+    /* The image used */
+    background-image: url("https://image.freepik.com/free-photo/old-grunge-dark-textured-wooden-background-the-surface-of-the-old-brown-wood-texture_7182-333.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.h3{
+     text-align: center;
+}
+ #botm{
+     background-color: blue;
+     text-align: center;
+     border-width: 5px;
+     border-color: black;
+     border-style: solid;
+}
+.img-thumbnail{
+    width: 300px;
+    height: 300px;
+}
+
+ 
