@@ -24,6 +24,7 @@ app.use(express.static('app/public'));
 
 // Get the routes
 require('./app/controller/routing/htmlRoutes.js')(app);
+require('./app/controller/routing/autosuggestRoutes.js')(app);
 //require('./app/controller/routing/apiRoutes.js')(app);
 require('./app/controller/routing/oauthRoutes.js')(app);
 
