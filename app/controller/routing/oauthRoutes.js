@@ -62,11 +62,11 @@ module.exports = function (app) {
         }
 
         //console.log("awaiting user info");
-        const result = await plus.people.get({ userId: 'me' });
-        console.log(result);
+        const googleResult = await plus.people.get({ userId: 'me' });
+        //console.log(result);
         // store the google information/user info here
         const db = require("../../../models/index.js");
-        db.User.upsert({
+        db.Users.upsert({
             googleID: googleResult.data.id,
             name: googleResult.data.displayName,
             photoIcon: googleResult.data.image.url

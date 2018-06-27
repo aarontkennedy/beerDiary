@@ -1,11 +1,8 @@
 module.exports = function (sequelize, DataTypes) {
 
     let BeerConsumed = sequelize.define("BeerConsumed", {
-        // these may need to be temporarily null?
-        // i don't always have both pieces of info at the same time
-        address: { type: DataTypes.STRING },
-        latitude: { type: DataTypes.FLOAT() },
-        longitude: { type: DataTypes.FLOAT() }
+        rating: { type: DataTypes.INTEGER },
+        opinion: { type: DataTypes.STRING }
     });
 
     BeerConsumed.associate = function (models) {

@@ -4,7 +4,7 @@ module.exports = function (app) {
         res.render("index");
     });
 
-    app.get("/diary", function (req, res) {
-        res.render("main");
+    app.get("/diary/:user", function (req, res) {
+        res.render("app");
     });
 };
