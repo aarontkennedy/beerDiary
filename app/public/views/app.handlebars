@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-12 col-md-6">
+        <label for="beer" id="beerSearch">
+            Beer Search
+            <input type="text" name="beer" id="beerAutocomplete">
+        </label>
+        <div class="outlineSection">
+            <h3 id="toggleAddBeer">
+                Not finding your beer? Add it!</h3>
+            <form id="addBeer" class="d-none">
+                <label for="beerName">
+                    Beer Name
+                    <input type="text" id="beerName" name="beerName" placeholder="Moose Drool" required>
+                </label>
+                <label for="beerDescription">
+                    Description
+                    <textarea id="beerDescription" name="beerDescription" placeholder="Moose Drool is a brown ale from Montana."
+                        required></textarea>
+                </label>
+                <button type="submit" class="btn btn-warning btn-lg">Add Beer</button>
+                <a id="clearAddBeer" href="">Clear</a>
+            </form>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <form id="beerDrankForm" class="d-none text-center">
+            <input type="hidden" name="beerID" value="">
+            <input type="hidden" name="drinkerID" value="{{drinker.id}}">
+            <h2 id="beerSelectionName" class="mb-3"></h2>
+            <p id="beerSelectionDescription" class="mb-3"></p>
+            <div class="mb-4">
+              <select id="beerDropdown">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            <button id="signInButton" class="btn btn-warning btn-lg" type="submit">I drank this beer! </button>
+            <a id="cancelAddBeerDrank" href="">Cancel</a>
+        </form>
+
+        <div id="beerHistory" class="outlineSection">
+            <h3 class="text-center">Beer History</h3>
+            <table id="beerHistoryTable">
+            </table>
+            <div id="beerStatistics">
+                <p>
+                    Total Beers Drank:
+                    <span id="numBeersDrank"></span>
+                </p>
+                <p>
+                    Total Different Beers:
+                    <span id="numDifferentBeers"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
