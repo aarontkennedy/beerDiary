@@ -5,10 +5,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         }, 
-        brewery: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },  
         style: {
             type: DataTypes.STRING
         }, 
@@ -20,6 +16,30 @@ module.exports = function (sequelize, DataTypes) {
         },  
         description: {
             type: DataTypes.TEXT
+        },
+        brewery: {
+            type: DataTypes.STRING
+        },  
+        address: {
+            type: DataTypes.STRING
+        },  
+        city: {
+            type: DataTypes.STRING
+        },  
+        state: {
+            type: DataTypes.STRING
+        },  
+        country: {
+            type: DataTypes.STRING
+        }, 
+        zipCode: {
+            type: DataTypes.STRING
+        },  
+        phone: {
+            type: DataTypes.STRING
+        },  
+        website: {
+            type: DataTypes.STRING
         }
     });
 

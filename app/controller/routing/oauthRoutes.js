@@ -63,18 +63,20 @@ module.exports = function (app) {
 
         //console.log("awaiting user info");
         const result = await plus.people.get({ userId: 'me' });
-        //console.log(result.data);
-        //const eater = {id: result.data.id, name: result.data.displayName};
-        /*orm.addEater(eater.id, eater.name, function (error, results) {
-                if (error) {
-                    console.log(error);
-                    return res.sendStatus(500);
-                } */
-                res.render("homeSignedIn", {
-                    signedIn: true,
-                    eater: eater
-                });
-       //     });
+        console.log(result);
+        // store the google information/user info here
+        const db = require("../../../models/index.js");
+        db.User.upsert({
+            googleID: googleResult.data.id,
+            name: googleResult.data.displayName,
+            photoIcon: googleResult.data.image.url
+        }).then(function (result) {
+            console.log(result);
+            // need to do some kind of check on the status
+
+            // we have that token in our url currently - redirect to get rid of it and pass the user id to the next step/page
+            res.redirect("/diary/" + googleResult.data.id);
+        });
     });
 
 }

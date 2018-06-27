@@ -1,63 +1,63 @@
 <div class="row">
     <div class="col-12 col-md-6">
-        <label for="burger" id="burgerSearch">
-            Burger Search
-            <input type="text" name="burger" id="burgerAutocomplete">
+        <label for="beer" id="beerSearch">
+            Beer Search
+            <input type="text" name="beer" id="beerAutocomplete">
         </label>
         <div class="outlineSection">
-            <h3 id="toggleAddBurger">
-                Not finding your burger? Add it!</h3>
-            <form id="addBurger" class="d-none">
-                <label for="burgerName">
-                    Burger Name
-                    <input type="text" id="burgerName" name="burgerName" placeholder="The Dagwood Burger" required>
+            <h3 id="toggleAddBeer">
+                Not finding your beer? Add it!</h3>
+            <form id="addBeer" class="d-none">
+                <label for="beerName">
+                    Beer Name
+                    <input type="text" id="beerName" name="beerName" placeholder="Moose Drool" required>
                 </label>
-                <label for="burgerDescription">
+                <label for="beerDescription">
                     Description
-                    <textarea id="burgerDescription" name="burgerDescription" placeholder="The dagwood has everything: egg, onion, cheese, pickles, bacon, etc."
+                    <textarea id="beerDescription" name="beerDescription" placeholder="Moose Drool is a brown ale from Montana."
                         required></textarea>
                 </label>
-                <button type="submit" class="btn btn-warning btn-lg">Add Burger</button>
-                <a id="clearAddBurger" href="">Clear</a>
+                <button type="submit" class="btn btn-warning btn-lg">Add Beer</button>
+                <a id="clearAddBeer" href="">Clear</a>
             </form>
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <form id="burgerEatenForm" class="d-none text-center">
-            <input type="hidden" name="burgerID" value="">
-            <input type="hidden" name="eaterID" value="{{eater.id}}">
-            <h2 id="burgerSelectionName" class="mb-3"></h2>
-            <p id="burgerSelectionDescription" class="mb-3"></p>
+        <form id="beerDrankForm" class="d-none text-center">
+            <input type="hidden" name="beerID" value="">
+            <input type="hidden" name="drinkerID" value="{{drinker.id}}">
+            <h2 id="beerSelectionName" class="mb-3"></h2>
+            <p id="beerSelectionDescription" class="mb-3"></p>
             <div class="mb-4">
-                <label for="badRating" class="ratingRadio">
-                    <input type="radio" id="badRating" name="burgerRating" value="0" />
-                    <i class="far fa-frown bad"></i>
-                </label>
-                <label for="okayRating" class="ratingRadio">
-                    <input type="radio" id="okayRating" name="burgerRating" value="1" checked="checked" />
-                    <i class="far fa-meh okay"></i>
-                </label>
-                <label for="greatRating" class="ratingRadio">
-                    <input type="radio" id="greatRating" name="burgerRating" value="2" />
-                    <i class="far fa-smile great"></i>
-                </label>
+              <select id="beerDropdown">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
             </div>
-            <button id="signInButton" class="btn btn-warning btn-lg" type="submit">I ate this burger! </button>
-            <a id="cancelAddBurgerEaten" href="">Cancel</a>
+            <button id="signInButton" class="btn btn-warning btn-lg" type="submit">I drank this beer! </button>
+            <a id="cancelAddBeerDrank" href="">Cancel</a>
         </form>
 
-        <div id="burgerHistory" class="outlineSection">
-            <h3 class="text-center">Burger History</h3>
-            <table id="burgerHistoryTable">
+        <div id="beerHistory" class="outlineSection">
+            <h3 class="text-center">Beer History</h3>
+            <table id="beerHistoryTable">
             </table>
-            <div id="burgerStatistics">
+            <div id="beerStatistics">
                 <p>
-                    <img src="burgerIconBullet.png"> Total Burgers Eaten:
-                    <span id="numBurgersEaten"></span>
+                    Total Beers Drank:
+                    <span id="numBeersDrank"></span>
                 </p>
                 <p>
-                    <img src="burgerIconBullet.png"> Total Different Burgers:
-                    <span id="numDifferentBurgers"></span>
+                    Total Different Beers:
+                    <span id="numDifferentBeers"></span>
                 </p>
             </div>
         </div>

@@ -10,15 +10,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING
             //allowNull: false - google sometimes doesn't give names
         },
-        displayName: {
-            type: DataTypes.STRING
-            //allowNull: false - google sometimes doesn't give names
-        },
         photoIcon: {
-            type: DataTypes.STRING
-            //allowNull: false - google sometimes doesn't give photos
-        },
-        country: {
             type: DataTypes.STRING
             //allowNull: false - google sometimes doesn't give photos
         }
