@@ -12,20 +12,58 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class = "container mb-5">
-    <div class = "row p-2">
+   <div class = "container pl-6 w-50 h-75">
+     <div class = "bg-2">
+        <div class= "row pt-5">
+          <div class = "col-3"></div>
+            <div class= "col-6">
+                <div class="alert alert-danger" role="alert">
+                    <div class = "text-center">Warning! To visit this page you must be of legal drinking age. Please drink responsibly.</div>
+                </div>
+            </div>
+            <div class = "col-3"></div>
+        </div>
+        <div class = "row mt-3">
+          <div class = "col"></div>
+          <div class = "col">
+            <div class = "h4 text-light">Were you born before</div>
+          </div>
+          <div class = "col"></div>
+          </div>
+          
+
+        <div class = "row mb-3">
+          
+          <div class = "col text-center text-light pt-5" id = "ageDate"><div class = "h2">?</div>
+          </div>
+          </div>
+
+
+        <div class = "row pt-5 pb-4">
+          <div class = "col"></div>
+                <div class= "col">
+                  <a href="/signin" class="btn btn-primary float-right">Yes (Google sign-in)</a>        
+                  </div>
       <div class = "col">
-              <a href="/signin" type="button" class="btn btn-primary">Yes (Google sign-in)</a>
-              <a href="https://www.google.com" class="btn btn-danger">No</a>
+                    <a href="https://www.google.com" class="btn btn-danger float-left">No (Google redirect)</a>
+                  </div>
+                  <div class = "col"></div>
+      </div>
+      <div class = "row pl-1 pr-1">
+        <div class = "col-2"></div>
+        <div class = "col">
+          <div class = "alert alert-danger">
+          <div class = "h6 text-danger">*Clicking 'Yes' will redirect to user's google acccounts, which will be saved as their user profile. </div>
+          <div class = "h6 text-danger">*Clicking 'No' will send user's to the google search engine homepage.</div>
+          </div>
+        </div>
+        <div class = "col-2"></div>
       </div>
     </div>
   </div>
 </body>
 <script>
-  //var ageInput = '<div = "container">Hello</div>';
         $(window).on('load', function(){        
-          //$('body').empty();
-          //$('body').append(ageInput);
           var d = new Date();
           var date = d.getDate();
           var legalAge = d.getFullYear()- 21;
@@ -46,7 +84,7 @@
           var currentMonth = monthArr[d.getMonth()];
           console.log(currentMonth);
           
-            $(".h3").append(currentMonth + "  " + date + "  " + legalAge);
+            $(".h2").prepend(currentMonth + "  " + date + "  " + legalAge);
            });
 </script>
 
