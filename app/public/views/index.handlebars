@@ -12,28 +12,21 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class = "bg-1">
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <h5 class="modal-title text-danger text-center" id="exampleModalLabel">Warning. Must be 21 or older to access site.</h5>
-            <div class="modal-body text-danger text-center h4">
-              *Must be born before*
-              <div class = "h3 text-center">
-              </div>
+  <div class = "container mb-5">
+    <div class = "row p-2">
+      <div class = "col">
               <a href="/signin" type="button" class="btn btn-primary">Yes (Google sign-in)</a>
               <a href="https://www.google.com" class="btn btn-danger">No</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 <script>
+  //var ageInput = '<div = "container">Hello</div>';
         $(window).on('load', function(){        
-          $('#exampleModal').modal('show');
+          //$('body').empty();
+          //$('body').append(ageInput);
           var d = new Date();
-
           var date = d.getDate();
           var legalAge = d.getFullYear()- 21;
           var monthArr = [
