@@ -1,0 +1,16 @@
+SELECT beers.name, 
+styles.style_name AS style,
+beers.abv, 
+beers.ibu, 
+beers.descript AS description,
+breweries.name AS brewery,
+breweries.address1 AS address,
+breweries.city AS city,
+breweries.state AS state,
+breweries.country AS country,
+breweries.code AS zipCode,
+breweries.phone AS phone,
+breweries.website AS website
+FROM beers
+LEFT JOIN breweries ON beers.`brewery_id` = breweries.`id`
+LEFT JOIN styles ON beers.`style_id` = styles.id;

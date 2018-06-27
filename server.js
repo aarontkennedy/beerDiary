@@ -24,12 +24,13 @@ app.use(express.static('app/public'));
 
 // Get the routes
 require('./app/controller/routing/htmlRoutes.js')(app);
+require('./app/controller/routing/autosuggestRoutes.js')(app);
 //require('./app/controller/routing/apiRoutes.js')(app);
 require('./app/controller/routing/oauthRoutes.js')(app);
 
 // load the models + sequelize
 let db = require("./models");
-db.sequelize.sync({force:true}).then(function () {
+db.sequelize.sync().then(function () {
   // start the server
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
