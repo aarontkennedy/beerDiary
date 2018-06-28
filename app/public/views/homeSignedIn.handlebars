@@ -7,7 +7,7 @@
         <div class="outlineSection">
             <h3 id="toggleAddBeer">
                 Not finding your beer? Add it!</h3>
-            <form id="addBeer" class="d-none">
+            <form id="addBeer">
                 <label for="beerName">
                     Beer Name
                     <input type="text" id="beerName" name="beerName" placeholder="Moose Drool" required>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="col-12 col-md-6">
-        <form id="beerDrankForm" class="d-none text-center">
+        <form id="beerDrankForm" class="text-center">
             <input type="hidden" name="beerID" value="">
             <input type="hidden" name="drinkerID" value="{{drinker.id}}">
             <h2 id="beerSelectionName" class="mb-3"></h2>

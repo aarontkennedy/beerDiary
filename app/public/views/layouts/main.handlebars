@@ -11,7 +11,10 @@
 </head>
 <header class = "container mb-5">
   <div class = "row p-2">
-    <div class = "col text-right">
+    <div class - "col text-left">
+        <img id="logo" class="mr-2" src="..\images\weblogo.png" alt="beerDiary-logo">
+    </div>
+    <div class = "col text-right mt-3">
       {{#if user.name}} Welcome, {{user.name}}! {{/if}} {{#if signedIn}}
        <a id="signInButton" class="btn btn-warning" href="/" role="button">Sign Out
                     <i title="Google Signin Required" class="fab fa-google"></i>
@@ -23,18 +26,11 @@
                 {{/if}}
             </div>
         </div>
-        <div class="row">
-            <div class="col text-center">
-                
-                    <img id="favicon" class="mr-2" src="..\images\weblogo.png" alt="beerDiary-logo">
-                
-            </div>
-        </div>
     </header>
     </div>
   </div>
 </header>
-<body>
+<body background="/images/wood.jpg" class="text-light">
     {{{body}}}
 </body>
 <footer class="container mt-5">
