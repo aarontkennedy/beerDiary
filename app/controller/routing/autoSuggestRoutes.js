@@ -5,17 +5,22 @@ module.exports = function (app) {
     const autosuggestMaxReturn = 5;
 
     app.get("/autosuggest/beers/names", function (req, res) {
-
-        db.Beers.findall({
+        console.log("***********************You were called!");
+        db.Beers.findAll({
             attributes: ['name'],
             where: {
                 name: {
-                    [Op.like]: "%" + req.query.query + "%"
+                    [db.Sequelize.Op.like]: "%" + req.query.query + "%"
                 }
             },
             limit: autosuggestMaxReturn
-        }).success(function (beers) {
-            return res.json({ suggestions: beers });
+        }).then(function (beers) {
+            console.log(beers);
+            let beerNames = [];
+            for(let i = 0; i < beers.length; i++) {
+                beerNames.push(beers[i].dataValues.name);
+            }
+            return res.json({ suggestions: beerNames });
         });
     });
 

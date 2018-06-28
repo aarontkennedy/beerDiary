@@ -1,21 +1,22 @@
 
 $(document).ready(function () {
-    const toggleAddBurgerElem = $("#toggleAddBurger");
+    /*const toggleAddBurgerElem = $("#toggleAddBurger");
     const addBurgerElem = $("#addBurger");
     const diplayNoneClass = "d-none";
     const burgerEatenForm = $("#burgerEatenForm");
-    const burgerHistory = $("#burgerHistory");
+    const burgerHistory = $("#burgerHistory");*/
 
     // Initialize ajax autocomplete:
-    $('#burgerAutocomplete').autocomplete({
-        serviceUrl: '/autosuggest/burgers',
+    $('#beerAutocomplete').autocomplete({
+        serviceUrl: '/autosuggest/beers/names',
         onSelect: function (suggestion) {
-            populateSelectedBurger(suggestion.data,
+            console.log(suggestion);
+            /*populateSelectedBurger(suggestion.data,
                 suggestion.value,
-                suggestion.description);
+                suggestion.description);*/
         }
     });
-
+/*
     // this toggles the display of the add burger form 
     // helps keep the display less cluttered
     toggleAddBurgerElem.click(function () {
@@ -199,6 +200,6 @@ $(document).ready(function () {
     }
     totalBurgerStatistics();
 
-
+*/
 
 });
