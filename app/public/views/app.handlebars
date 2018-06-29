@@ -7,12 +7,13 @@
         <div class="outlineSection">
             <h3 id="toggleAddBeer">
                 Not finding your beer? Add it!</h3>
-                <form>
+
+<form id="submitNewBeer">
+
   <div class="form-group">
     <label for="inputBeerName">Beer Name</label>
     <input type="text" class="form-control" id="beerName" placeholder="Bud Light">
   </div>
-
  
   <div class="form-group row ml-3">
     <div class="col-xs-3">
@@ -37,7 +38,7 @@
   <div class="form-group row ml-3">
     <div class="col-xs-3">
         <label for="Brewery">Brewery name</label>
-        <input class="form-control" id="brewery" type="text">
+        <input class="form-control" id="breweryAutocomplete" type="text">
     </div>
     <div class="col-xs-3">
         <label for="Address">Address</label>
@@ -74,13 +75,9 @@
     </div>
 </div>
 <button id="beerSubmit" class="btn btn-warning btn-lg" type="submit">Submit this beer! </button>
-
-  <div class="form-group">
-
-
-
 </form>
-        </div>
+
+        
     </div>
     <div class="col-12 col-md-6">
         <form id="beerDrankForm" class="text-center">
