@@ -316,6 +316,66 @@ $(document).ready(function () {
                     suggestion.description);*/
             }
         });
+
+    $('#beerSubmit').on('click',function(e){
+        e.preventDefault();
+        console.log('hi');
+        var beerName;
+        var style;
+        var abv;
+        var ibu;
+        var description;
+        var breweryName;
+        var address;
+        var city;
+        var state;
+        var country;
+        var zip;
+
+        //check if beer name is filled to add beer
+        if ($('#beerName').val()){
+            beerName = $('#beerName').val();
+            style = $('#styleAutocomplete').val();
+            abv = $('#abv').val();
+            ibu = $('#ibu').val();
+            description = $('#description').val();
+            breweryName = $('#breweryAutocomplete').val();
+            address = $('#address').val();
+            city = $('#city').val();
+            state = $('#stateAutocomplete').val();
+            country = $('#country').val();
+            zip = $('#zipCode').val();
+            phone = $('#phone').val();
+            website = $('#website').val();
+
+            newBeer = {
+                name: beerName,
+                style: style,
+                abv: abv,
+                ibu: ibu,
+                description: description,
+                brewery: breweryName,
+                address: address,
+                city: city,
+                country: country,
+                zip: zip,
+                phone: phone,
+                website: website
+            }
+
+            
+            
+            
+            
+            
+            $.post("/api/beers", newBeer).then($("#beerField").html("Beer Name <font color='green'>Beer has been added to the database!</font>"));
+
+        }
+        else {
+            $("#beerField").html("Beer Name <font color='red'>Beer name is required!</font>");
+
+        }
+    });        
 /*
     // this toggles the display of the add burger form 
     // helps keep the display less cluttered
