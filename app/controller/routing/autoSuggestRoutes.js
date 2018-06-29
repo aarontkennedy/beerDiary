@@ -26,7 +26,7 @@ module.exports = function (app) {
 
     app.get("/autosuggest/beers/styles", function (req, res) {
 
-        db.Beers.findall({
+        db.Beers.findAll({
             attributes: ['style'],
             where: {
                 style: {
@@ -34,7 +34,7 @@ module.exports = function (app) {
                 }
             },
             limit: autosuggestMaxReturn
-        }).success(function (styles) {
+        }).then(function (styles) {
             console.log(styles);
             let beerStyles = [];
             for(let i = 0; i < styles.length; i++) {
@@ -46,7 +46,7 @@ module.exports = function (app) {
 
     app.get("/autosuggest/beers/breweries", function (req, res) {
 
-        db.Beers.findall({
+        db.Beers.findAll({
             attributes: ['brewery'],
             where: {
                 brewery: {
@@ -54,7 +54,7 @@ module.exports = function (app) {
                 }
             },
             limit: autosuggestMaxReturn
-        }).success(function (breweries) {
+        }).then(function (breweries) {
             console.log(breweries);
             let breweryNames = [];
             for(let i = 0; i < breweries.length; i++) {

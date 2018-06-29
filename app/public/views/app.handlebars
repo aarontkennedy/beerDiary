@@ -7,19 +7,41 @@
         <div class="outlineSection">
             <h3 id="toggleAddBeer">
                 Not finding your beer? Add it!</h3>
-            <form id="addBeer">
-                <label for="beerName">
-                    Beer Name
-                    <input type="text" id="beerName" name="beerName" placeholder="Moose Drool" required>
-                </label>
-                <label for="beerDescription">
-                    Description
-                    <textarea id="beerDescription" name="beerDescription" placeholder="Moose Drool is a brown ale from Montana."
-                        required></textarea>
-                </label>
-                <button type="submit" class="btn btn-warning btn-lg">Add Beer</button>
-                <a id="clearAddBeer" href="">Clear</a>
-            </form>
+                <form>
+  <div class="form-group">
+    <label for="inputBeerName">Beer Name</label>
+    <input type="text" class="form-control" id="beerName" placeholder="Bud Light">
+  </div>
+
+ 
+  <div class="form-group row ml-3">
+    <div class="col-xs-3">
+        <label for="beerStyle">Style</label>
+        <input class="form-control" id="styleAutocomplete" type="text">
+    </div>
+    <div class="col-xs-3">
+        <label for="beerABV">ABV</label>
+        <input class="form-control" id="abv" type="text">
+    </div>
+    <div class="col-xs-3">
+        <label for="beerIBU">IBU</label>
+        <input class="form-control" id="ibu" type="text">
+    </div>
+  </div>
+  <div class="col-xs-3">
+        <label for="beerIBU">IBU</label>
+        <input class="form-control" id="stateAutocomplete" type="text">
+    </div>
+
+  <div class="form-group">
+
+
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+</form>
         </div>
     </div>
     <div class="col-12 col-md-6">
