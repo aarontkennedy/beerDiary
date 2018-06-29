@@ -320,24 +320,26 @@ $(document).ready(function () {
     $('#beerSubmit').on('click',function(e){
         e.preventDefault();
         console.log('hi');
-        var beerName;
-        var style;
-        var abv;
-        var ibu;
-        var description;
-        var breweryName;
-        var address;
-        var city;
-        var state;
-        var country;
-        var zip;
+        var beerName = '';
+        var style = '';
+        var abv = '';
+        var ibu = '';
+        var description = '';
+        var breweryName = '';
+        var address = '';
+        var city = '';
+        var state = '';
+        var country = '';
+        var zip = '';
+        var phone = '';
+        var website = '';
 
         //check if beer name is filled to add beer
         if ($('#beerName').val()){
             beerName = $('#beerName').val();
             style = $('#styleAutocomplete').val();
-            abv = $('#abv').val();
-            ibu = $('#ibu').val();
+            abv = 2//$('#abv').val(); needs debugging
+            ibu = 3//$('#ibu').val();
             description = $('#description').val();
             breweryName = $('#breweryAutocomplete').val();
             address = $('#address').val();
