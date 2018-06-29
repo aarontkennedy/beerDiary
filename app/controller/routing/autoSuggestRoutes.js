@@ -17,7 +17,7 @@ module.exports = function (app) {
         }).then(function (beers) {
             console.log(beers);
             let beerNames = [];
-            for(let i = 0; i < beers.length; i++) {
+            for (let i = 0; i < beers.length; i++) {
                 beerNames.push(beers[i].dataValues.name);
             }
             return res.json({ suggestions: beerNames });
@@ -38,7 +38,7 @@ module.exports = function (app) {
         }).then(function (styles) {
             console.log(styles);
             let beerStyles = [];
-            for(let i = 0; i < styles.length; i++) {
+            for (let i = 0; i < styles.length; i++) {
                 beerStyles.push(styles[i].dataValues.style);
             }
             return res.json({ suggestions: beerStyles });
@@ -48,7 +48,14 @@ module.exports = function (app) {
     app.get("/autosuggest/beers/breweries", function (req, res) {
 
         db.Beers.findAll({
-            attributes: ['brewery'],
+            attributes: ['brewery',
+                'address',
+                'city',
+                'state',
+                'country',
+                'zipCode',
+                'phone',
+                'website'],
             where: {
                 brewery: {
                     [db.Sequelize.Op.like]: "%" + req.query.query + "%"
@@ -58,11 +65,22 @@ module.exports = function (app) {
             limit: autosuggestMaxReturn
         }).then(function (breweries) {
             console.log(breweries);
-            let breweryNames = [];
-            for(let i = 0; i < breweries.length; i++) {
-                breweryNames.push(breweries[i].dataValues.style);
+            let breweryInfo = [];
+            for (let i = 0; i < breweries.length; i++) {
+                breweryInfo.push({
+                    value: breweries[i].dataValues.brewery,
+                    data: {
+                        address: breweries[i].dataValues.address,
+                        city: breweries[i].dataValues.city,
+                        state: breweries[i].dataValues.state,
+                        country: breweries[i].dataValues.country,
+                        zipCode: breweries[i].dataValues.zipCode,
+                        phone: breweries[i].dataValues.phone,
+                        website: breweries[i].dataValues.website
+                    }
+                });
             }
-            return res.json({ suggestions: breweryNames });
+            return res.json({ suggestions: breweryInfo });
         });
     });
 

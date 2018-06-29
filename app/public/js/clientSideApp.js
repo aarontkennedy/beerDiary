@@ -27,9 +27,6 @@ $(document).ready(function () {
         serviceUrl: '/autosuggest/beers/styles',
         onSelect: function (suggestion) {
             console.log(suggestion);
-            /*populateSelectedBurger(suggestion.data,
-                suggestion.value,
-                suggestion.description);*/
         }
     });
 
@@ -37,9 +34,14 @@ $(document).ready(function () {
         serviceUrl: '/autosuggest/beers/breweries',
         onSelect: function (suggestion) {
             console.log(suggestion);
-            /*populateSelectedBurger(suggestion.data,
-                suggestion.value,
-                suggestion.description);*/
+            debugger
+            $("#address").val(suggestion.data.address);
+            $("#city").val(suggestion.data.city);
+            $("#stateAutocomplete").val(suggestion.data.state);
+            $("#country").val(suggestion.data.country);
+            $("#zipCode").val(suggestion.data.zipCode);
+            $("#phone").val(suggestion.data.phone);
+            $("#website").val(suggestion.data.website);
         }
     });
 
