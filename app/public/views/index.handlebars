@@ -12,55 +12,39 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
 <body>
-   <div class = "container pl-6 w-50 h-75">
-     <div class = "bg-2">
-        <div class= "row pt-5">
-          <div class = "col-3"></div>
-            <div class= "col-6">
+  <div class = "bg-2">
+   <div class = "container mb-2 pl-6 w-50" id = "idWindow">
+     <div class = "bg-1">
+        <div class= "row pt-5" id>
+          
+            <div class= "col ml-2 mr-2" id = "warningWindow">
                 <div class="alert alert-danger" role="alert">
-                    <div class = "text-center">Warning! To visit this page you must be of legal drinking age. Please drink responsibly.</div>
+                    <div class = "text-center" id = "warningText">MyBeerDiary is devoted to helping people find and rate their favorite beers! To visit this page you must be of legal drinking age or lie. Please drink responsibly.</div>
                 </div>
             </div>
-            <div class = "col-3"></div>
+            
         </div>
-        <div class = "row mt-3">
-          <div class = "col"></div>
+        <div class = "row mt-2">
           <div class = "col">
-            <div class = "h4 text-light">Were you born before</div>
+            <div class = "h4 text-dark text-center" id = "bornLimit" >Were you born before</div>
           </div>
-          <div class = "col"></div>
-          </div>
+        </div>
+        <div class = "row mb-2">
+          <div class = "col text-center text-danger font-weight-bold h4" id = "ageDate">?</div>
+        </div>
+        <div class = "row pt-5 pb-3" id = "rowYesOrNo">
           
-
-        <div class = "row mb-3">
-          
-          <div class = "col text-center text-light pt-5" id = "ageDate"><div class = "h2">?</div>
-          </div>
-          </div>
-
-
-        <div class = "row pt-5 pb-4">
-          <div class = "col"></div>
-                <div class= "col">
-                  <a href="/signin" class="btn btn-primary float-right">Yes (Google sign-in)</a>        
+                <div class= "col" >
+                  <a href="/signin" class="btn btn-primary" id = "yesButton">Yes (Google sign-in)</a>        
                   </div>
       <div class = "col">
-                    <a href="https://www.google.com" class="btn btn-danger float-left">No (Google redirect)</a>
+                    <a href="https://www.google.com" class="btn btn-danger" id = "noButton">No, I am a child</a>
                   </div>
-                  <div class = "col"></div>
-      </div>
-      <div class = "row pl-1 pr-1">
-        <div class = "col-2"></div>
-        <div class = "col">
-          <div class = "alert alert-danger">
-          <div class = "h6 text-danger">*Clicking 'Yes' will redirect to user's google acccounts, which will be saved as their user profile. </div>
-          <div class = "h6 text-danger">*Clicking 'No' will send user's to the google search engine homepage.</div>
-          </div>
-        </div>
-        <div class = "col-2"></div>
+                  
       </div>
     </div>
   </div>
+</div>
 </body>
 <script>
         $(window).on('load', function(){        
@@ -84,7 +68,7 @@
           var currentMonth = monthArr[d.getMonth()];
           console.log(currentMonth);
           
-            $(".h2").prepend(currentMonth + "  " + date + "  " + legalAge);
+            $("#ageDate").prepend(currentMonth + "  " + date + ",  " + legalAge);
            });
 </script>
 
