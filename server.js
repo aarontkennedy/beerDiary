@@ -25,8 +25,8 @@ app.use(express.static('app/public'));
 
 console.log("Get the routes");
 require('./app/controller/routing/htmlRoutes.js')(app);
-require('./app/controller/routing/autosuggestRoutes.js')(app);
-//require('./app/controller/routing/apiRoutes.js')(app);
+require('./app/controller/routing/autoSuggestRoutes.js')(app);
+require('./app/controller/routing/apiRoutes.js')(app);
 require('./app/controller/routing/oauthRoutes.js')(app);
 
 console.log("load the models + sequelize");
