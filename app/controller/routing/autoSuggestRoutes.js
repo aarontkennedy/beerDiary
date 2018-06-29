@@ -30,12 +30,37 @@ module.exports = function (app) {
             attributes: ['style'],
             where: {
                 style: {
-                    [Op.like]: "%" + req.query.query + "%"
+                    [db.Sequelize.Op.like]: "%" + req.query.query + "%"
                 }
             },
             limit: autosuggestMaxReturn
         }).success(function (styles) {
-            return res.json({ suggestions: styles });
+            console.log(styles);
+            let beerStyles = [];
+            for(let i = 0; i < styles.length; i++) {
+                beerStyles.push(styles[i].dataValues.style);
+            }
+            return res.json({ suggestions: beerStyles });
+        });
+    });
+
+    app.get("/autosuggest/beers/breweries", function (req, res) {
+
+        db.Beers.findall({
+            attributes: ['brewery'],
+            where: {
+                brewery: {
+                    [db.Sequelize.Op.like]: "%" + req.query.query + "%"
+                }
+            },
+            limit: autosuggestMaxReturn
+        }).success(function (breweries) {
+            console.log(breweries);
+            let breweryNames = [];
+            for(let i = 0; i < breweries.length; i++) {
+                breweryNames.push(breweries[i].dataValues.style);
+            }
+            return res.json({ suggestions: breweryNames });
         });
     });
 
