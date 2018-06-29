@@ -33,6 +33,7 @@ module.exports = function (app) {
                     [db.Sequelize.Op.like]: "%" + req.query.query + "%"
                 }
             },
+            group: ['style'],
             limit: autosuggestMaxReturn
         }).then(function (styles) {
             console.log(styles);
@@ -53,6 +54,7 @@ module.exports = function (app) {
                     [db.Sequelize.Op.like]: "%" + req.query.query + "%"
                 }
             },
+            group: ['brewery'],
             limit: autosuggestMaxReturn
         }).then(function (breweries) {
             console.log(breweries);
