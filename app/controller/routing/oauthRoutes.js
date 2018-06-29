@@ -25,6 +25,10 @@ module.exports = function (app) {
         process.env.redirect_uris || keys.redirect_uris[0]
     );
 
+    console.log(process.env.client_id);
+    console.log(process.env.client_secret);
+    console.log(process.env.redirect_uris);
+
     /**
  * This is one of the many ways you can configure googleapis to use authentication credentials.  In this method, we're setting a global reference for all APIs.  Any other API you use here, like google.drive('v3'), will now use this auth client. You can also override the auth client at the service and method call levels.
  */
