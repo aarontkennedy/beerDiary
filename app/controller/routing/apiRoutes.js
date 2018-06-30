@@ -111,4 +111,17 @@ module.exports = function (app) {
             });
     });
 
+    app.get("/api/beerConsumed/:userID", function (req, res) {
+
+        db.BeerConsumed.findAll({
+            where: {
+                UserGoogleID: req.params.userID
+            },
+            group: ['style'],
+            limit: autosuggestMaxReturn
+        }).then(function (styles) {
+
+        });
+    });
+
 };
