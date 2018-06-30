@@ -42,7 +42,6 @@ $(document).ready(function () {
         $("#beerSearch").hide();
         $("#newBeerForm").show();
         $("#addBeerToggle").hide();
-        setBeerFormSubmitText(false);
     });
 
     $("#beerClear").click(function () {
@@ -413,7 +412,9 @@ $(document).ready(function () {
         }
     });
 
-    $('#beerSubmit').on('click', function (e) {
+    
+
+    $('#newBeerForm').on('submit', function (e) {
         e.preventDefault();
         console.log('hi');
         var beerName = '';
@@ -430,7 +431,7 @@ $(document).ready(function () {
         var phone = '';
         var website = '';
 
-        //check if beer name is filled to add beer
+
         if ($('#beerName').val()) {
             beerName = $('#beerName').val();
             style = $('#styleAutocomplete').val();
@@ -466,11 +467,11 @@ $(document).ready(function () {
 
 
 
-            $.post("/api/beers", newBeer).then($("#beerField").html("Beer Name <font color='green'>Beer has been added to the database!</font>"));
+            $.post("/api/beers", newBeer).then($("#beerField").html("<font color='green'>Beer has been added to the database!</font>"));
 
         }
         else {
-            $("#beerField").html("Beer Name <font color='red'>Beer name is required!</font>");
+            $("#beerField").html("<font color='red'>Beer name is required!</font>");
 
         }
     });
