@@ -1,8 +1,10 @@
 module.exports = function (sequelize, DataTypes) {
 
     let BeerConsumed = sequelize.define("BeerConsumed", {
-        rating: { type: DataTypes.INTEGER },
-        opinion: { type: DataTypes.STRING }
+        rating: { type: DataTypes.INTEGER,
+            defaultValue: 7 },
+        opinion: { type: DataTypes.STRING,
+            defaultValue: "" }
     });
 
     BeerConsumed.associate = function (models) {
