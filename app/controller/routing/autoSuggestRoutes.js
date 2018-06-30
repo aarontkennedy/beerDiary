@@ -5,9 +5,8 @@ module.exports = function (app) {
     const autosuggestMaxReturn = 5;
 
     app.get("/autosuggest/beers/names", function (req, res) {
-        console.log("***********************You were called!");
+
         db.Beers.findAll({
-            attributes: ['name'],
             where: {
                 name: {
                     [db.Sequelize.Op.like]: "%" + req.query.query + "%"
@@ -16,11 +15,15 @@ module.exports = function (app) {
             limit: autosuggestMaxReturn
         }).then(function (beers) {
             console.log(beers);
-            let beerNames = [];
+            let beerArray = [];
             for (let i = 0; i < beers.length; i++) {
-                beerNames.push(beers[i].dataValues.name);
+
+                beerArray.push({
+                    value: beers[i].dataValues.name,
+                    data: beers[i].dataValues
+                });
             }
-            return res.json({ suggestions: beerNames });
+            return res.json({ suggestions: beerArray });
         });
     });
 
@@ -36,7 +39,7 @@ module.exports = function (app) {
             group: ['style'],
             limit: autosuggestMaxReturn
         }).then(function (styles) {
-            console.log(styles);
+            //console.log(styles);
             let beerStyles = [];
             for (let i = 0; i < styles.length; i++) {
                 beerStyles.push(styles[i].dataValues.style);
@@ -64,7 +67,7 @@ module.exports = function (app) {
             group: ['brewery'],
             limit: autosuggestMaxReturn
         }).then(function (breweries) {
-            console.log(breweries);
+            //console.log(breweries);
             let breweryInfo = [];
             for (let i = 0; i < breweries.length; i++) {
                 breweryInfo.push({

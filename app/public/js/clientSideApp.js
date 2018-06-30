@@ -33,6 +33,7 @@ $(document).ready(function () {
     $("#beerSearchToggle").click(function () {
         $("#beerSearch").show();
         $("#newBeerForm").hide();
+        $("#addBeerToggle").show();
     });
     // hide this one right away - default showing should be search
     $("#newBeerForm").hide();
@@ -40,6 +41,29 @@ $(document).ready(function () {
     $("#addBeerToggle").click(function () {
         $("#beerSearch").hide();
         $("#newBeerForm").show();
+        $("#addBeerToggle").hide();
+    });
+
+    $("#beerClear").click(function () {
+        $("#beerSearch").show();
+        $("#newBeerForm").hide();
+        $("#addBeerToggle").show();
+        putBeerInUpdateForm({
+            id: null,
+            name: null,
+            style: null,
+            abv: null,
+            ibu: null,
+            description: null,
+            brewery: null,
+            address: null,
+            city: null,
+            state: null,
+            country: null,
+            zipCode: null,
+            phone: null,
+            website: null
+        });
     });
 
 
@@ -47,12 +71,41 @@ $(document).ready(function () {
     $('#beerAutocomplete').autocomplete({
         serviceUrl: '/autosuggest/beers/names',
         onSelect: function (suggestion) {
-            console.log(suggestion);
-            /*populateSelectedBurger(suggestion.data,
-                suggestion.value,
-                suggestion.description);*/
+            //console.log(suggestion);
+            setBeerFormSubmitText(true);
+            putBeerInUpdateForm(suggestion.data);
+            $("#beerSearch").hide();
+            $("#newBeerForm").show();
+            $("#addBeerToggle").hide();
         }
     });
+
+    let beerSubmitElement = $("#beerSubmit");
+    function setBeerFormSubmitText(update = true) {
+        if (update) {
+            beerSubmitElement.text("Update");
+        }
+        else {
+            beerSubmitElement.text("Add");
+        }
+    }
+    function putBeerInUpdateForm(beer) {
+        if (!beer) { throw new Error("beer input must not be null!") }
+        $("#beerID").val(beer.id);
+        $('#beerName').val(beer.name);
+        $('#styleAutocomplete').val(beer.style);
+        $('#abv').val(beer.abv);
+        $('#ibu').val(beer.ibu);
+        $('#description').val(beer.description);
+        $('#breweryAutocomplete').val(beer.brewery);
+        $('#address').val(beer.address);
+        $('#city').val(beer.city);
+        $('#stateAutocomplete').val(beer.state);
+        $('#country').val(beer.country);
+        $('#zipCode').val(beer.zipCode);
+        $('#phone').val(beer.phone);
+        $('#website').val(beer.website);
+    }
 
     const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
     $('#stateAutocomplete').autocomplete({

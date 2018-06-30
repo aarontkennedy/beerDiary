@@ -6,40 +6,52 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }, 
         style: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: "Beer"
         }, 
         abv: {
-            type: DataTypes.FLOAT
+            type: DataTypes.FLOAT,
+            defaultValue: 0
         }, 
         ibu: {
-            type: DataTypes.FLOAT
+            type: DataTypes.FLOAT,
+            defaultValue: 0
         },  
         description: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue: ""
         },
         brewery: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: ""
         },  
         address: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: ""
         },  
         city: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: ""
         },  
         state: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: ""
         },  
         country: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: ""
         }, 
         zipCode: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: ""
         },  
         phone: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: ""
         },  
         website: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: ""
         }
     });
 

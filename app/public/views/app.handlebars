@@ -1,19 +1,20 @@
 <div class="row">
     <div class="col-12 col-md-6">
-        <h3 id="beerSearchToggle">Beer Search</h3>
-        <label for="beer" id="beerSearch">
-            Beer
-            <input type="text" name="beer" id="beerAutocomplete">
-        </label>
+        <div class="text-center">
+            <h3 id="beerSearchToggle">Beer Search</h3>
+            <label for="beer" id="beerSearch">
+                Beer
+                <input type="text" name="beer" id="beerAutocomplete">
+            </label>
+            <button id="addBeerToggle" class="btn btn-danger">
+                <i class="far fa-plus-square"></i> Add Beer</button>
+        </div>
 
         <div>
-            <h3 id="addBeerToggle">
-                Not finding your beer? Add it!</h3>
-
             <form id="newBeerForm">
-
                 <div class="form-group">
-                    <label for="inputBeerName">Beer Name
+                    <input type="hidden" id="beerID">
+                    <label for="inputBeerName">Beer
                         <input type="text" class="form-control" id="beerName" placeholder="Bud Light">
                     </label>
                 </div>
@@ -97,6 +98,7 @@
                     </div>
                 </div>
                 <button id="beerSubmit" class="btn btn-warning btn-lg" type="submit">Submit this beer! </button>
+                <button id="beerClear" class="btn btn-danger btn-lg">Cancel</button>
             </form>
         </div>
     </div>
