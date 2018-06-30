@@ -9,12 +9,6 @@ module.exports = function (app) {
             return res.status(400).send("Must provide beer name.");
         }
 
-        if (req.body.id) {
-
-        }
-        else {
-            
-        }
         db.Beers.create({
             name: req.body.name,
             style: req.body.style,
@@ -39,13 +33,14 @@ module.exports = function (app) {
         });
     });
 
-    app.post("/api/beers", function (req, res) {
+
+    app.put("/api/beers", function (req, res) {
 
         if (!req.body.name) {
             return res.status(400).send("Must provide beer name.");
         }
 
-        db.Beers.create({
+        db.Beers.update({
             name: req.body.name,
             style: req.body.style,
             abv: req.body.abv,
@@ -59,15 +54,23 @@ module.exports = function (app) {
             zipCode: req.body.zipCode,
             phone: req.body.phone,
             website: req.body.website
-        }).then(function (error, result) {
-            if (error) {
-                console.log(error);
-                return res.status(500).send(error);
-            }
-            console.log(result);
-            return res.json({ id: result.insertId });
-        });
+        },
+            {
+                where: {
+                    style: {
+                        [db.Sequelize.Op.like]: "%" + req.query.query + "%"
+                    }
+                }
+            }).then(function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.status(500).send(error);
+                }
+                console.log(result);
+                return res.json({ id: result.insertId });
+            });
     });
-    
+
+
 
 };
