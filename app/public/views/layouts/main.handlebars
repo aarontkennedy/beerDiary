@@ -18,17 +18,18 @@
                 <img id="logo" class="mr-2" src="..\images\weblogo.png" alt="beerDiary-logo">
             </div>
             <div class="col text-right mt-3">
-                {{#if user.name}} Welcome, {{user.name}}! {{/if}} {{!-- This will stop the Sign Out button from being displayed on the index
-                page --}} {{#if signedIn}}
-                <a id="signInButton" class="btn btn-warning" href="/index" role="button">Sign Out
-                    <i title="Google Signin Required" class="fab fa-google"></i>
+                {{#if signedIn}} 
+                    {{#if user.name}} Welcome, {{user.name}}! {{/if}}
+                <a id="signInButton" class="btn btn-warning" href="/" role="button">Sign Out
+                    <i title="Google Signout" class="fab fa-google"></i>
                 </a>
-                {{else}} {{/if}}
+                {{else}} 
+                {{/if}}
             </div>
         </div>
     </header>
 
-    <section>
+    <section class="container-fluid">
         {{{body}}}
     </section>
 
@@ -40,7 +41,8 @@
                 <a href="">Sean Hudson</a>.
             </li>
             <li>
-               <a href="https://github.com/aarontkennedy/beerDiary"><i class="fab fa-github"></i> See Project on Github.</a>
+                <a href="https://github.com/aarontkennedy/beerDiary">
+                    <i class="fab fa-github"></i> See Project on Github.</a>
             </li>
         </ul>
     </footer>

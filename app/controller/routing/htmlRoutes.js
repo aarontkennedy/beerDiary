@@ -15,8 +15,11 @@ module.exports = function (app) {
             },
         }).then(function (result) {
             console.log(result.dataValues);
-            res.render("app", { user: result.dataValues});
+            res.render("app", {
+                user: result.dataValues,
+                signedIn: true
+            });
         })
-        .catch(error => res.status(400).send(error));
+            .catch(error => res.status(400).send(error));
     });
 };

@@ -30,6 +30,17 @@ $(document).ready(function () {
     }
     initializeDate();
 
+    $("#beerSearchToggle").click(function () {
+        $("#beerSearch").show();
+        $("#newBeerForm").hide();
+    });
+    // hide this one right away - default showing should be search
+    $("#newBeerForm").hide();
+
+    $("#addBeerToggle").click(function () {
+        $("#beerSearch").hide();
+        $("#newBeerForm").show();
+    });
 
 
     // Initialize ajax autocomplete:
