@@ -73,4 +73,42 @@ module.exports = function (app) {
 
 
 
+    app.post("/api/beerConsumed", function (req, res) {
+
+        db.BeerConsumed.create({
+            rating: req.body.rating,
+            opinion: req.body.opinion,
+            beerId: req.body.beerID,
+            UserGoogleID: req.body.userID,
+        }).then(function (error, result) {
+            if (error) {
+                console.log(error);
+                return res.status(500).send(error);
+            }
+            console.log(result);
+            return res.json({ id: result.insertId });
+        });
+    });
+
+    app.put("/api/beerConsumed", function (req, res) {
+
+        db.BeerConsumed.update({
+            rating: req.body.rating,
+            opinion: req.body.opinion
+        },
+            {
+                where: {
+                    beerId: req.body.beerID,
+                    UserGoogleID: req.body.userID
+                }
+            }).then(function (error, result) {
+                if (error) {
+                    console.log(error);
+                    return res.status(500).send(error);
+                }
+                console.log(result);
+                return res.json({ id: result.insertId });
+            });
+    });
+
 };
