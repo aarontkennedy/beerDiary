@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,59 +8,57 @@
     <title>Beer Diary</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Syncopate" rel="stylesheet">
-    <link rel = "stylesheet" href="..\styles\new-styles.css">
+    <link rel="stylesheet" href="..\styles\new-styles.css">
 </head>
-<header class = "container mb-5">
-  <div class = "row p-2">
-    <div class - "col text-left">
-        <img id="logo" class="mr-2" src="..\images\weblogo.png" alt="beerDiary-logo">
-    </div>
-    <div class = "col text-right mt-3">
-      {{#if user.name}} Welcome, {{user.name}}! {{/if}}
-      {{!-- This will stop the Sign Out button from being displayed on the index page --}}
-      {{#if signedIn}}
-       <a id="signInButton" class="btn btn-warning" href="/index" role="button">Sign Out
+
+<body class="text-light">
+    <header class="container mb-5">
+        <div class="row p-2">
+            <div class - "col text-left">
+                <img id="logo" class="mr-2" src="..\images\weblogo.png" alt="beerDiary-logo">
+            </div>
+            <div class="col text-right mt-3">
+                {{#if user.name}} Welcome, {{user.name}}! {{/if}} {{!-- This will stop the Sign Out button from being displayed on the index
+                page --}} {{#if signedIn}}
+                <a id="signInButton" class="btn btn-warning" href="/index" role="button">Sign Out
                     <i title="Google Signin Required" class="fab fa-google"></i>
                 </a>
-                {{else}}
-                {{/if}}
+                {{else}} {{/if}}
             </div>
         </div>
     </header>
-    </div>
-  </div>
-</header>
-<body background="/images/wood.jpg" class="text-light">
-    {{{body}}}
-</body>
 
-<footer class="container mt-5">
-    {{#if signedIn}}
+    <section>
+        {{{body}}}
+    </section>
+
+    <footer class="container mt-5">
         <ul>
-           <li>Created by
-                <a href="https://github.com/aarontkennedy/beerDiary">Aaron Kennedy, Kevin Liao, Sean Hudson
-                    <i class="far fa-envelope"></i>
-                </a>
+            <li>Created by
+                <a href="https://aarontkennedy.github.io">Aaron Kennedy</a>,
+                <a href="">Kevin Liao</a>, and
+                <a href="">Sean Hudson</a>.
+            </li>
+            <li>
+               <a href="https://github.com/aarontkennedy/beerDiary"><i class="fab fa-github"></i> See Project on Github.</a>
             </li>
         </ul>
-        {{else}}
-        {{/if}}
-        {{!-- This will stop the footer contents from being rendered on the index page. --}}
+    </footer>
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/jquery.autocomplete.js"></script> 
+    <script type="text/javascript" src="/js/jquery.autocomplete.js"></script>
 
     <script type="text/javascript" src="/js/clientSideApp.js"></script>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
         crossorigin="anonymous"></script>
-        
-    </footer>
+
+</body>
 
 </html>

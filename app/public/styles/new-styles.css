@@ -1,45 +1,52 @@
 body, html {
+    background-image: url("/images/wood.jpg");
     height: 100%;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    flex: 1 0 auto;
+}
+  
+footer {
+    flex-shrink: 0;
+    text-align:center;
+}
+
+
+footer ul {
+    list-style-type: none;
+    text-align: center;
+  }
+  
+  footer ul li {
+    margin: 0;
+    padding: 0;
+    display: inline;
+  }
+  
+  footer ul li:after {
+    content: " | ";
+  }
+  
+  footer ul li:last-child:after {
+    content: "";
+  }
+  
+
 .jumbotron{
     background: rgb(255,255,255, .5);
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.bg-1 { 
-    border-radius: 25px;
-    /* The image used */
-    background: whitesmoke;
-    position: static;
-
-    /* Full height */
-    height: 100%; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.bg-2 { 
-    /* The image used */
-    background-image:"/images/wood.jpg";
-
-    /* Full height */
-    height: 100%;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-#ageDate{
-    padding-top: 15px;
-}
-#yesButton{
-    float:right;
-}
-
-<<<<<<< HEAD
 .autocomplete-suggestions { 
     border: 1px solid #999; 
     border-top: none;
@@ -55,7 +62,32 @@ body, html {
 
 .autocomplete-selected { 
     background: #F0F0F0; 
-=======
+}
+
+.bg-1 { 
+    border-radius: 25px;
+    background: whitesmoke;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+}
+
+.spashyImage {
+    max-width: 100%;
+}
+
+/*
+
+#ageDate{
+    padding-top: 15px;
+}
+#yesButton{
+    float:right;
+}
+
+
+
 @media screen and (max-width: 980px) and (min-width: 769px) {
   .bg-2{
       height: 50%;
@@ -109,5 +141,5 @@ body, html {
     #ageDate{
         font-size: 16px;
     }
->>>>>>> 234b09a2a0aa1804066dca7580ed9ba52d7ea3c6
 }
+*/

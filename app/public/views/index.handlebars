@@ -1,75 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Beer Diary</title>
-    <link rel = "stylesheet" href="..\styles\new-styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-</head>
-<body>
-  <div class = "bg-2">
-   <div class = "container mb-2 pl-6 w-50" id = "idWindow">
-     <div class = "bg-1">
-        <div class= "row pt-5" id>
-          
-            <div class= "col ml-2 mr-2" id = "warningWindow">
-                <div class="alert alert-danger" role="alert">
-                    <div class = "text-center" id = "warningText">MyBeerDiary is devoted to helping people find and rate their favorite beers! To visit this page you must be of legal drinking age or lie. Please drink responsibly.</div>
-                </div>
-            </div>
-            
-        </div>
-        <div class = "row mt-2">
-          <div class = "col">
-            <div class = "h4 text-dark text-center" id = "bornLimit" >Were you born before</div>
-          </div>
-        </div>
-        <div class = "row mb-2">
-          <div class = "col text-center text-danger font-weight-bold h4" id = "ageDate">?</div>
-        </div>
-        <div class = "row pt-5 pb-3" id = "rowYesOrNo">
-          
-                <div class= "col" >
-                  <a href="/signin" class="btn btn-primary" id = "yesButton">Yes (Google sign-in)</a>        
-                  </div>
-      <div class = "col">
-                    <a href="https://www.google.com" class="btn btn-danger" id = "noButton">No, I am a child</a>
-                  </div>
-                  
-      </div>
+<div class="container bg-1 p-4" id="idWindow">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h3 class="text-center">BeerDiary!</h3>
+      <p>BeerDiary is devoted to helping people find, rate, and remember their favorite beers!</p>
+      <p>To visit this page you must be of legal drinking age. Please drink responsibly.</p>
+    </div>
+    <div class="col-12 col-md-6">
+      <img class="spashyImage" src="/images/happyPeopleDrinking.jpg" alt="Happy People Drinking">
     </div>
   </div>
-</div>
-</body>
-<script>
-        $(window).on('load', function(){        
-          var d = new Date();
-          var date = d.getDate();
-          var legalAge = d.getFullYear()- 21;
-          var monthArr = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-          ];
-          var currentMonth = monthArr[d.getMonth()];
-          console.log(currentMonth);
-          
-            $("#ageDate").prepend(currentMonth + "  " + date + ",  " + legalAge);
-           });
-</script>
 
-</html>
+  <div class="row mt-4">
+    <div class="col">
+      <div class="h4 text-dark text-center" id="bornLimit">Were you born before</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center text-danger font-weight-bold h4" id="ageDate">?</div>
+  </div>
+  <div class="row pt-3 text-center" id="rowYesOrNo">
+
+    <div class="col mb-2 text-center">
+      <a href="/signin" class="btn btn-primary btn-lg" id="yesButton">Yes (Google sign-in)</a>
+
+      <a href="https://www.google.com" class="btn btn-danger  btn-lg" id="noButton">No, I am a minor.</a>
+    </div>
+  </div>
+
+</div>
