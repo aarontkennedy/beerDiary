@@ -23,13 +23,14 @@ module.exports = function (app) {
             zipCode: req.body.zipCode,
             phone: req.body.phone,
             website: req.body.website
-        }).then(function (error, result) {
-            if (error) {
-                console.log(error);
-                return res.status(500).send(error);
-            }
+        }).then(function (result) {
+
             console.log(result);
-            return res.json({ id: result.insertId });
+            return res.json({ id: result.dataValues.id });
+        }).catch(function (error) {
+            console.log(error);
+            return res.status(500).send(error);
+
         });
     });
 
@@ -57,17 +58,16 @@ module.exports = function (app) {
         },
             {
                 where: {
-                    style: {
-                        [db.Sequelize.Op.like]: "%" + req.query.query + "%"
-                    }
+                    id: req.body.id
                 }
-            }).then(function (error, result) {
-                if (error) {
-                    console.log(error);
-                    return res.status(500).send(error);
-                }
+            }).then(function (result) {
+
                 console.log(result);
-                return res.json({ id: result.insertId });
+                return res.json({ result: result });
+            }).catch(function (error) {
+                console.log(error);
+                return res.status(500).send(error);
+    
             });
     });
 

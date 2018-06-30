@@ -4,14 +4,14 @@
             <h3 id="beerSearchToggle">Beer Search</h3>
             <label for="beer" id="beerSearch">
                 Beer
-                <input type="text" name="beer" id="beerAutocomplete">
+                <input type="text" name="beer" id="beerAutocomplete" autocomplete="new-password">
             </label>
-            <button id="addBeerToggle" class="btn btn-danger">
+            <button id="addBeerToggle" class="btn btn-danger" type="button">
                 <i class="far fa-plus-square"></i> Add Beer</button>
         </div>
 
         <div>
-            <form id="newBeerForm">
+            <form id="newBeerForm" autocomplete="new-password">
                 <div class="form-group">
                     <input type="hidden" id="beerID">
                     <label for="inputBeerName">Beer
@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 <button id="beerSubmit" class="btn btn-warning btn-lg" type="submit">Submit this beer! </button>
-                <button id="beerClear" class="btn btn-danger btn-lg">Cancel</button>
+                <button id="beerClear" class="btn btn-danger btn-lg" type="reset">Cancel</button>
             </form>
         </div>
     </div>
