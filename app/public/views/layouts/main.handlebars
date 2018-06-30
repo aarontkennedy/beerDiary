@@ -15,14 +15,13 @@
         <img id="logo" class="mr-2" src="..\images\weblogo.png" alt="beerDiary-logo">
     </div>
     <div class = "col text-right mt-3">
-      {{#if user.name}} Welcome, {{user.name}}! {{/if}} {{#if signedIn}}
-       <a id="signInButton" class="btn btn-warning" href="/" role="button">Sign Out
+      {{#if user.name}} Welcome, {{user.name}}! {{/if}}
+      {{!-- This will stop the Sign Out button from being displayed on the index page --}}
+      {{#if signedIn}}
+       <a id="signInButton" class="btn btn-warning" href="/index" role="button">Sign Out
                     <i title="Google Signin Required" class="fab fa-google"></i>
                 </a>
                 {{else}}
-                <a id="signInButton" class="btn btn-warning" href="signin" role="button">Sign In
-                    <i title="Google Signin Required" class="fab fa-google"></i>
-                </a>
                 {{/if}}
             </div>
         </div>
@@ -33,7 +32,9 @@
 <body background="/images/wood.jpg" class="text-light">
     {{{body}}}
 </body>
+
 <footer class="container mt-5">
+    {{#if signedIn}}
         <ul>
            <li>Created by
                 <a href="https://github.com/aarontkennedy/beerDiary">Aaron Kennedy, Kevin Liao, Sean Hudson
@@ -41,6 +42,11 @@
                 </a>
             </li>
         </ul>
+        {{else}}
+        {{/if}}
+        {{!-- This will stop the footer contents from being rendered on the index page. --}}
+
+
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -53,5 +59,7 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
         crossorigin="anonymous"></script>
+        
     </footer>
+
 </html>
