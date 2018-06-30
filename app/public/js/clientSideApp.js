@@ -380,8 +380,8 @@ $(document).ready(function () {
         if ($('#beerName').val()) {
             beerName = $('#beerName').val();
             style = $('#styleAutocomplete').val();
-            abv = 2//$('#abv').val(); needs debugging
-            ibu = 3//$('#ibu').val();
+            abv = parseFloat($('#abv').val());
+            ibu = parseFloat($('#ibu').val())
             description = $('#description').val();
             breweryName = $('#breweryAutocomplete').val();
             address = $('#address').val();
