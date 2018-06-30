@@ -42,6 +42,7 @@ $(document).ready(function () {
         $("#beerSearch").hide();
         $("#newBeerForm").show();
         $("#addBeerToggle").hide();
+        setBeerFormSubmitText(false);
     });
 
     $("#beerClear").click(function () {
@@ -70,6 +71,7 @@ $(document).ready(function () {
     // Initialize ajax autocomplete:
     $('#beerAutocomplete').autocomplete({
         serviceUrl: '/autosuggest/beers/names',
+        minChars: 1,
         onSelect: function (suggestion) {
             //console.log(suggestion);
             setBeerFormSubmitText(true);
@@ -416,7 +418,7 @@ $(document).ready(function () {
 
     $('#newBeerForm').on('submit', function (e) {
         e.preventDefault();
-        console.log('hi');
+
         var beerName = '';
         var style = '';
         var abv = '';
@@ -433,6 +435,7 @@ $(document).ready(function () {
 
 
         if ($('#beerName').val()) {
+            id = $('#beerID').val();
             beerName = $('#beerName').val();
             style = $('#styleAutocomplete').val();
             abv = parseFloat($('#abv').val());
@@ -448,6 +451,7 @@ $(document).ready(function () {
             website = $('#website').val();
 
             newBeer = {
+                id : id,
                 name: beerName,
                 style: style,
                 abv: abv,
@@ -462,16 +466,31 @@ $(document).ready(function () {
                 website: website
             }
 
+            //put request if beerID isn't null
+            if ($('#beerID').val()) {
+                
+                console.log('put request')
+                $.ajax({
+                    url: "/api/beers",
+                    type: "PUT",
+                    data: newBeer,
+                }).then(function(res, error) {
+                    console.log(res);
+                    console.log('put complete;')
+                });
 
 
+            }
+            else{
+                console.log('post request');
+                $.post("/api/beers", newBeer)
+                .then(function(insertedID){
+                    console.log(insertedID);
+                    $('#beerID').val(insertedID.id);
+                    
+                });
 
-
-
-            $.post("/api/beers", newBeer).then($("#beerField").html("<font color='green'>Beer has been added to the database!</font>"));
-
-        }
-        else {
-            $("#beerField").html("<font color='red'>Beer name is required!</font>");
+            }
 
         }
     });
