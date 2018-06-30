@@ -9,6 +9,12 @@ module.exports = function (app) {
             return res.status(400).send("Must provide beer name.");
         }
 
+        if (req.body.id) {
+
+        }
+        else {
+            
+        }
         db.Beers.create({
             name: req.body.name,
             style: req.body.style,

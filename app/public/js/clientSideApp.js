@@ -42,6 +42,7 @@ $(document).ready(function () {
         $("#beerSearch").hide();
         $("#newBeerForm").show();
         $("#addBeerToggle").hide();
+        setBeerFormSubmitText(false);
     });
 
     $("#beerClear").click(function () {
