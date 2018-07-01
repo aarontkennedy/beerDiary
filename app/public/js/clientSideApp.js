@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
 
+    /* this is the only code needed for the landing page */
     function initializeDate() {
         var ageDateElement = $("#ageDate");
 
@@ -29,85 +30,25 @@ $(document).ready(function () {
         }
     }
     initializeDate();
-
-    $("#beerSearchToggle").click(function () {
-        $("#beerSearch").show();
-        $("#newBeerForm").hide();
-        $("#addBeerToggle").show();
-    });
-    // hide this one right away - default showing should be search
-    $("#newBeerForm").hide();
-
-    $("#addBeerToggle").click(function () {
-        $("#beerSearch").hide();
-        $("#newBeerForm").show();
-        $("#addBeerToggle").hide();
-        setBeerFormSubmitText(false);
-    });
-
-    $("#beerClear").click(function () {
-        $("#beerSearch").show();
-        $("#newBeerForm").hide();
-        $("#addBeerToggle").show();
-        putBeerInUpdateForm({
-            id: null,
-            name: null,
-            style: null,
-            abv: null,
-            ibu: null,
-            description: null,
-            brewery: null,
-            address: null,
-            city: null,
-            state: null,
-            country: null,
-            zipCode: null,
-            phone: null,
-            website: null
-        });
-    });
+    /* end landing page code */
 
 
+    /*  Start of autosuggest/complete code */
     // Initialize ajax autocomplete:
     $('#beerAutocomplete').autocomplete({
         serviceUrl: '/autosuggest/beers/names',
         minChars: 1,
         onSelect: function (suggestion) {
             //console.log(suggestion);
-            setBeerFormSubmitText(true);
+            // we put the beer in the update form now in case
+            // they decide to update it later and click update
             putBeerInUpdateForm(suggestion.data);
-            $("#beerSearch").hide();
-            $("#newBeerForm").show();
-            $("#addBeerToggle").hide();
+            // show the beer drank section in case they want to 
+            // register an opinion
+            putBeerInDrankBeerInfo(suggestion.data);
+            showTheDrankBeerSection();
         }
     });
-
-    let beerSubmitElement = $("#beerSubmit");
-    function setBeerFormSubmitText(update = true) {
-        if (update) {
-            beerSubmitElement.text("Update");
-        }
-        else {
-            beerSubmitElement.text("Add");
-        }
-    }
-    function putBeerInUpdateForm(beer) {
-        if (!beer) { throw new Error("beer input must not be null!") }
-        $("#beerID").val(beer.id);
-        $('#beerName').val(beer.name);
-        $('#styleAutocomplete').val(beer.style);
-        $('#abv').val(beer.abv);
-        $('#ibu').val(beer.ibu);
-        $('#description').val(beer.description);
-        $('#breweryAutocomplete').val(beer.brewery);
-        $('#address').val(beer.address);
-        $('#city').val(beer.city);
-        $('#stateAutocomplete').val(beer.state);
-        $('#country').val(beer.country);
-        $('#zipCode').val(beer.zipCode);
-        $('#phone').val(beer.phone);
-        $('#website').val(beer.website);
-    }
 
     const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
     $('#stateAutocomplete').autocomplete({
@@ -131,7 +72,6 @@ $(document).ready(function () {
         serviceUrl: '/autosuggest/beers/breweries',
         onSelect: function (suggestion) {
             console.log(suggestion);
-            debugger
             $("#address").val(suggestion.data.address);
             $("#city").val(suggestion.data.city);
             $("#stateAutocomplete").val(suggestion.data.state);
@@ -142,7 +82,7 @@ $(document).ready(function () {
         }
     });
 
-    var countries = [
+    const countries = [
         "Andorra",
         "Andorra Test",
         "United Arab Emirates",
@@ -408,93 +348,179 @@ $(document).ready(function () {
         lookup: countries,
         onSelect: function (suggestion) {
             console.log(suggestion);
-            /*populateSelectedBurger(suggestion.data,
-                suggestion.value,
-                suggestion.description);*/
         }
     });
+    /* end of autocomplete code */
 
-    
+
+
+    /* Handling of which forms are presented to the user */
+    const beerSearchSectionElement = $("#beerSearchSection");
+    const addUpdateBeerSectionElement = $("#addUpdateBeerSection");
+    const beerConsumedSectionElement = $("#beerConsumedSection");
+
+    function showTheBeerSearch() {
+        $("#beerAutocomplete").val(null);
+        beerSearchSectionElement.show();
+        addUpdateBeerSectionElement.hide();
+        beerConsumedSectionElement.hide();
+    }
+    showTheBeerSearch(); // this is the initial state
+
+    function showTheAddUpdateSection() {
+        beerSearchSectionElement.hide();
+        addUpdateBeerSectionElement.show();
+        beerConsumedSectionElement.hide();
+    }
+
+    function showTheDrankBeerSection() {
+        beerSearchSectionElement.hide();
+        addUpdateBeerSectionElement.hide();
+        beerConsumedSectionElement.show();
+    }
+
+    let beerSubmitElement = $("#beerSubmit");
+    function setBeerFormSubmitSetText(text = "Add") {
+        beerSubmitElement.text(text);
+    }
+
+    function clearBeerAddUpdateForm() {
+        putBeerInUpdateForm({
+            id: null,
+            name: null,
+            style: null,
+            abv: null,
+            ibu: null,
+            description: null,
+            brewery: null,
+            address: null,
+            city: null,
+            state: null,
+            country: null,
+            zipCode: null,
+            phone: null,
+            website: null
+        });
+        setBeerFormSubmitSetText("Add");
+    }
+
+    function putBeerInUpdateForm(beer) {
+        if (!beer) { throw new Error("beer input must not be null!") }
+        $("#beerID").val(beer.id);
+        $('#beerName').val(beer.name);
+        $('#styleAutocomplete').val(beer.style);
+        $('#abv').val(beer.abv);
+        $('#ibu').val(beer.ibu);
+        $('#description').val(beer.description);
+        $('#breweryAutocomplete').val(beer.brewery);
+        $('#address').val(beer.address);
+        $('#city').val(beer.city);
+        $('#stateAutocomplete').val(beer.state);
+        $('#country').val(beer.country);
+        $('#zipCode').val(beer.zipCode);
+        $('#phone').val(beer.phone);
+        $('#website').val(beer.website);
+        setBeerFormSubmitSetText("Update");
+    }
+
+    $("#updateBeer").click(function () {
+        showTheAddUpdateSection();
+    });
+
+    function putBeerInDrankBeerInfo(beer) {
+        $("#chosenBeerID").text(beer.id);
+        $('#chosenBeerName').text(beer.name);
+        $('#chosenBeerStyle').text(beer.style);
+        $('#chosenBeerABV').text(beer.abv);
+        $('#chosenBeerIBU').text(beer.ibu);
+        $('#chosenBeerDescription').text(beer.description);
+        $('#chosenBeerBrewery').text(beer.brewery);
+        $('#chosenBeerAddress').text(beer.address);
+        $('#chosenBeerCity').text(beer.city);
+        $('#chosenBeerState').text(beer.state);
+        $('#chosenBeerCountry').text(beer.country);
+        $('#chosenBeerZipCode').text(beer.zipCode);
+        $('#chosenBeerPhone').text(beer.phone);
+        $('#chosenBeerWebsite').text(beer.website);
+        $('#chosenBeerWebsite').attr("href", beer.website);
+    }
+
+    $("#beerClear").click(function () {
+        clearBeerAddUpdateForm();
+        showTheBeerSearch();
+    });
+    $("#cancelAddBeerDrank").click(function () {
+        showTheBeerSearch();
+    });
+
+
+    $("#addBeerToggle").click(function () {
+        clearBeerAddUpdateForm();
+        showTheAddUpdateSection();
+    });
 
     $('#newBeerForm').on('submit', function (e) {
         e.preventDefault();
 
-        var beerName = '';
-        var style = '';
-        var abv = '';
-        var ibu = '';
-        var description = '';
-        var breweryName = '';
-        var address = '';
-        var city = '';
-        var state = '';
-        var country = '';
-        var zip = '';
-        var phone = '';
-        var website = '';
+        // after an add or update - show the drank beer section
+        showTheDrankBeerSection();
 
+        let beer = {
+            id: null,
+            name: '',
+            style: '',
+            abv: 0,
+            ibu: 0,
+            description: '',
+            breweryName: '',
+            address: '',
+            city: '',
+            state: '',
+            country: '',
+            zip: '',
+            phone: '',
+            website: ''
+        };
 
         if ($('#beerName').val()) {
-            id = $('#beerID').val();
-            beerName = $('#beerName').val();
-            style = $('#styleAutocomplete').val();
-            abv = parseFloat($('#abv').val());
-            ibu = parseFloat($('#ibu').val())
-            description = $('#description').val();
-            breweryName = $('#breweryAutocomplete').val();
-            address = $('#address').val();
-            city = $('#city').val();
-            state = $('#stateAutocomplete').val();
-            country = $('#country').val();
-            zip = $('#zipCode').val();
-            phone = $('#phone').val();
-            website = $('#website').val();
-
-            newBeer = {
-                id : id,
-                name: beerName,
-                style: style,
-                abv: abv,
-                ibu: ibu,
-                description: description,
-                brewery: breweryName,
-                address: address,
-                city: city,
-                country: country,
-                zip: zip,
-                phone: phone,
-                website: website
-            }
+            beer.id = $('#beerID').val();
+            beer.name = $('#beerName').val();
+            beer.style = $('#styleAutocomplete').val();
+            beer.abv = parseFloat($('#abv').val());
+            beer.ibu = parseFloat($('#ibu').val())
+            beer.description = $('#description').val();
+            beer.breweryName = $('#breweryAutocomplete').val();
+            beer.address = $('#address').val();
+            beer.city = $('#city').val();
+            beer.state = $('#stateAutocomplete').val();
+            beer.country = $('#country').val();
+            beer.zip = $('#zipCode').val();
+            beer.phone = $('#phone').val();
+            beer.website = $('#website').val();
 
             //put request if beerID isn't null
-            if ($('#beerID').val()) {
-                
+            if (beer.id) {
                 console.log('put request')
                 $.ajax({
                     url: "/api/beers",
                     type: "PUT",
-                    data: newBeer,
-                }).then(function(res, error) {
+                    data: beer,
+                }).then(function (res, error) {
                     console.log(res);
-                    console.log('put complete;')
+                    console.log('put complete;');
+                    putBeerInDrankBeerInfo(beer);
                 });
-
-
             }
-            else{
+            else {
                 console.log('post request');
-                $.post("/api/beers", newBeer)
-                .then(function(insertedID){
-                    console.log(insertedID);
-                    $('#beerID').val(insertedID.id);
-                    
-                });
-
+                $.post("/api/beers", beer)
+                    .then(function (insertedID) {
+                        console.log(insertedID);
+                        beer.id = insertedID;
+                        putBeerInDrankBeerInfo(beer);
+                    });
             }
-
         }
     });
-    
-    
 
 });

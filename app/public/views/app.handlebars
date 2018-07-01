@@ -1,150 +1,188 @@
-<div class="row">
-    <div class="col-12 col-md-6">
-        <div class="text-center">
-            <h3 id="beerSearchToggle">Beer Search</h3>
-            <label for="beer" id="beerSearch">
-                Beer
-                <input type="text" name="beer" id="beerAutocomplete" autocomplete="new-password">
-            </label>
-            <button id="addBeerToggle" class="btn btn-danger" type="button">
-                <i class="far fa-plus-square"></i> Add Beer</button>
+<!-- Beer Search Section -->
+<form id="beerSearchSection" autocomplete="off">
+    <div class="form-row">
+        <div class="col">
+            <h3 id="beerSearchToggle">
+                <label class="col" for="beer" id="beerSearch">Beer Search</label>
+            </h3>
         </div>
-
-        <div>
-            <form id="newBeerForm" autocomplete="new-password">
-                <div class="form-group">
-                    <input type="hidden" id="beerID">
-                    <label for="inputBeerName">Beer
-                        <input type="text" class="form-control" id="beerName" placeholder="Bud Light" required="required">
-                    </label>
-                </div>
-
-                <div class="form-group row ml-3">
-                    <div class="col-xs-3">
-                        <label for="beerStyle">Style
-
-                            <input class="form-control" id="styleAutocomplete" type="text">
-                        </label>
-                    </div>
-                    <div class="col-xs-3">
-                        <label for="beerABV">ABV
-
-                            <input class="form-control" id="abv" type="number" min="0" max="100">
-                        </label>
-                    </div>
-                    <div class="col-xs-3">
-                        <label for="beerIBU">IBU
-
-                            <input class="form-control" id="ibu" type="number" min="0" max="1000">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="beerDescription">Description
-                        <textarea class="form-control" id="description" rows="3"></textarea>
-                    </label>
-
-                </div>
-                <div class="form-group row ml-3">
-                    <div class="col-xs-3">
-                        <label for="Brewery">Brewery
-
-                            <input class="form-control" id="breweryAutocomplete" type="text">
-                        </label>
-                    </div>
-                    <div class="col-xs-3">
-                        <label for="Address">Address
-                            <input class="form-control" id="address" type="text">
-                        </label>
-
-                    </div>
-                    <div class="col-xs-3">
-                        <label for="City">City
-                            <input class="form-control" id="city" type="text">
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group row ml-3">
-                    <div class="col-xs-3">
-                        <label for="State">State
-                            <input class="form-control" id="stateAutocomplete" type="text">
-                        </label>
-                    </div>
-                    <div class="col-xs-3">
-                        <label for="Country">Country
-                            <input class="form-control" id="country" type="text">
-                        </label>
-
-                    </div>
-                    <div class="col-xs-3">
-                        <label for="Zip">Zip Code
-                            <input class="form-control" id="zipCode" type="text">
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group row ml-3">
-                    <div class="col-xs-3">
-                        <label for="Phone">Phone
-                            <input class="form-control" id="phone" type="tel">
-                        </label>
-
-                    </div>
-                    <div class="col-xs-3">
-                        <label for="Website">Website
-                            <input class="form-control" id="website" type="url">
-                        </label>
-
-                    </div>
-                </div>
-                <button id="beerSubmit" class="btn btn-warning btn-lg" type="submit">Submit this beer! </button>
-                <button id="beerClear" class="btn btn-danger btn-lg" type="reset">Cancel</button>
-            </form>
+        <div class="col text-right">
+            <button id="addBeerToggle" class="btn btn-danger" type="button">
+                <i class="far fa-plus-square" title="Add New Beer"></i> Add Beer</button>
         </div>
     </div>
+    <div class="form-row">
+        <div class="col">
+            <input type="text" name="beer" id="beerAutocomplete" class="form-control form-control-lg" autocomplete="new-password">
+        </div>
+    </div>
+</form>
+<!-- End Beer Search Section -->
 
-    <div class="col-12 col-md-6">
-        <form id="beerDrankForm" class="text-center">
-            <input name="beerID" value="">
-            <input name="drinkerID" value="{{drinker.id}}">
-            <h2 id="beerSelectionName" class="mb-3"></h2>
-            <p id="beerSelectionDescription" class="mb-3"></p>
-            <div class="mb-4">
-                <select id="beerDropdown">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
+<!-- Add/Update Form Section -->
+<div id="addUpdateBeerSection" class="outlineSection">
+    <form id="newBeerForm" autocomplete="off">
+        <div class="form-group">
+            <input type="hidden" id="beerID">
+            <label for="inputBeerName">Beer</label>
+            <input type="text" class="form-control form-control-lg" id="beerName" placeholder="Bud Light" required="required">
+        </div>
+
+        <div class="form-group form-row">
+            <div class="col-8">
+                <label for="beerStyle">Style</label>
+                <input class="form-control" id="styleAutocomplete" type="text">
+            </div>
+            <div class="col-2">
+                <label for="beerABV">ABV</label>
+                <input class="form-control" id="abv" type="number" min="0" max="100">
+            </div>
+            <div class="col-2">
+                <label for="beerIBU">IBU</label>
+                <input class="form-control" id="ibu" type="number" min="0" max="1000">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="beerDescription">Description</label>
+            <textarea class="form-control form-control-lg" id="description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="Brewery">Brewery</label>
+
+            <input class="form-control" id="breweryAutocomplete" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="Address">Address
+            </label>
+            <input class="form-control" id="address" type="text">
+        </div>
+
+        <div class="form-group form-row">
+            <div class="col-9">
+                <label for="City">City
+                </label>
+                <input class="form-control" id="city" type="text">
+            </div>
+            <div class="col-3">
+                <label for="State">State</label>
+                <input class="form-control" id="stateAutocomplete" type="text">
+            </div>
+        </div>
+
+        <div class="form-group form-row">
+            <div class="col-8">
+                <label for="Country">Country</label>
+                <input class="form-control" id="countryAutocomplete" type="text">
+            </div>
+            <div class="col-4">
+                <label for="Zip">Zip Code</label>
+                <input class="form-control" id="zipCode" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Phone">Phone</label>
+            <input class="form-control" id="phone" type="tel">
+        </div>
+
+        <div class="form-group">
+            <label for="Website">Website</label>
+            <input class="form-control" id="website" type="url">
+        </div>
+
+        <div class="form-group text-center">
+            <button id="beerSubmit" class="btn btn-warning btn-lg" type="submit">Submit this beer! </button>
+            <button id="beerClear" class="btn btn-danger btn-lg" type="button"><i class="fas fa-ban"></i> Cancel</button>
+        </div>
+    </form>
+</div>
+
+<!-- End Add/Update Form Section -->
+
+
+<!-- Beer Consumed Form -->
+<div id="beerConsumedSection" class="outlineSection">
+    <div class="form-row">
+        <div class="col-9">
+            <h3 id="chosenBeerName"></h3>
+        </div>
+        <div class="col-3 text-right">
+            <button id="updateBeer" class="btn btn-danger" type="button"><i class="fas fa-pencil-alt"></i> Update</button>
+        </div>
+    </div>
+    <div>
+        Style:
+        <span id="chosenBeerStyle"></span>
+        ABV:
+        <span id="chosenBeerABV"></span>
+        IBU:
+        <span id="chosenBeerIBU"></span>
+    </div>
+    <div id="chosenBeerDescription"></div>
+    <div id="chosenBeerBrewery"></div>
+    <div>
+        <span id="chosenBeerAddress"></span>
+        <span id="chosenBeerCity"></span>
+        <span id="chosenBeerState"></span>
+        <span id="chosenBeerCountry"></span>
+        <span id="chosenBeerZipCode"></span>
+    </div>
+    <div id="chosenBeerPhone"></div>
+    <div>
+        <a id="chosenBeerBrewery" href="" target="_blank"></a>
+    </div>
+
+    <form id="beerDrankForm">
+        <input type="hidden" name="chosenBeerID" value="">
+        <input type="hidden" name="userID" value="{{user.googleID}}">
+
+        <div class="form-row">
+            <div class="col-10">
+                <label for="beerOpinion">Opinion</label>
+                <textarea class="form-control form-control-lg" id="beerOpinion"></textarea>
+            </div>
+            <div class="col-2">
+                <label for="beerRatingDropdown">Rating</label>
+                <select class="form-control" id="beerRatingDropdown">
+                    <option value="10">10 - Amazing!</option>
                     <option value="9">9</option>
-                    <option value="10">10</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1 - Terrible</option>
                 </select>
             </div>
-            <button id="signInButton" class="btn btn-warning btn-lg" type="submit">I drank this beer! </button>
-            <a id="cancelAddBeerDrank" href="">Cancel</a>
-        </form>
-
-        <div id="beerHistory" class="outlineSection">
-            <h3 class="text-center">Beer History</h3>
-            <table id="beerHistoryTable">
-            </table>
-            <div id="beerStatistics">
-                <p>
-                    Total Beers Drank:
-                    <span id="numBeersDrank"></span>
-                </p>
-                <p>
-                    Total Different Beers:
-                    <span id="numDifferentBeers"></span>
-                </p>
-            </div>
         </div>
-    </div>
 
-    <!-- new row here -->
-
-
+        <div class="text-center mt-3">
+            <button id="signInButton" class="btn btn-warning btn-lg" type="submit"><i class="fas fa-beer"></i> I drank this beer! </button>
+            <button class="btn btn-danger" id="cancelAddBeerDrank" type="button"><i class="fas fa-ban"></i> Cancel</a>
+        </div>
+    </form>
 </div>
+<!-- End Beer Consumed Form -->
+
+<!-- User's Beer History -->
+<div id="beerHistory" class="outlineSection">
+    <h3 class="text-center">Beer History</h3>
+    <table id="beerHistoryTable">
+    </table>
+    <div id="beerStatistics">
+        <p>
+            Total Beers Drank:
+            <span id="numBeersDrank"></span>
+        </p>
+        <p>
+            Total Different Beers:
+            <span id="numDifferentBeers"></span>
+        </p>
+    </div>
+</div>
+<!-- End User's Beer History -->
