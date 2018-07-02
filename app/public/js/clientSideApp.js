@@ -428,7 +428,8 @@ $(document).ready(function () {
     });
 
     function putBeerInDrankBeerInfo(beer) {
-        $("#chosenBeerID").text(beer.id);
+        
+        $("input[name=chosenBeerID]").val(beer.id);
         $('#chosenBeerName').text(beer.name);
         $('#chosenBeerStyle').text(beer.style);
         $('#chosenBeerABV').text(beer.abv);
@@ -443,6 +444,9 @@ $(document).ready(function () {
         $('#chosenBeerPhone').text(beer.phone);
         $('#chosenBeerWebsite').text(beer.website);
         $('#chosenBeerWebsite').attr("href", beer.website);
+
+        $("#beerRatingDropdown").val(10);
+        $("#beerOpinion").val(null);
     }
 
     $("#beerClear").click(function () {
@@ -521,6 +525,33 @@ $(document).ready(function () {
                     });
             }
         }
+    });
+
+    $("#beerDrankForm").on("submit", function (e) {
+        e.preventDefault();
+        
+        const beerID = $("input[name=chosenBeerID]").val();
+        const userID = $("input[name=userID]").val();
+
+        if (!beerID || !userID) {
+            throw new Error ("beerId and userID not set!");
+        }
+
+        let beerConsumed = {
+            rating: $("#beerRatingDropdown").val(),
+            opinion: $("#beerOpinion").val(),
+            BeerId: beerID,
+            UserGoogleID: userID
+        };
+
+        $.post("/api/beerConsumed", beerConsumed)
+            .then(function (result) {
+                console.log(result);
+                /* what should we do now? */
+                showTheBeerSearch();
+                /* AND WE NEED TO UPDATE THE HISTORY */
+
+            });
     });
 
 });

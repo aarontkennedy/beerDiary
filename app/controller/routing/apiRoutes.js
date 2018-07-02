@@ -25,7 +25,7 @@ module.exports = function (app) {
             website: req.body.website
         }).then(function (result) {
 
-            console.log(result);
+            //console.log(result);
             return res.json({ id: result.dataValues.id });
         }).catch(function (error) {
             console.log(error);
@@ -62,7 +62,7 @@ module.exports = function (app) {
                 }
             }).then(function (result) {
 
-                console.log(result);
+                //console.log(result);
                 return res.json({ result: result });
             }).catch(function (error) {
                 console.log(error);
@@ -78,15 +78,16 @@ module.exports = function (app) {
         db.BeerConsumed.create({
             rating: req.body.rating,
             opinion: req.body.opinion,
-            beerId: req.body.beerID,
-            UserGoogleID: req.body.userID,
-        }).then(function (error, result) {
-            if (error) {
-                console.log(error);
-                return res.status(500).send(error);
-            }
-            console.log(result);
-            return res.json({ id: result.insertId });
+            BeerId: req.body.BeerId,
+            UserGoogleID: req.body.UserGoogleID,
+        }).then(function (result) {
+
+            //console.log(result);
+            return res.json({ id: result.dataValues });
+        }).catch(function (error) {
+            console.log(error);
+            return res.status(500).send(error);
+
         });
     });
 
@@ -101,13 +102,14 @@ module.exports = function (app) {
                     beerId: req.body.beerID,
                     UserGoogleID: req.body.userID
                 }
-            }).then(function (error, result) {
-                if (error) {
-                    console.log(error);
-                    return res.status(500).send(error);
-                }
-                console.log(result);
-                return res.json({ id: result.insertId });
+            }).then(function (result) {
+
+                //console.log(result);
+                return res.json({ id: result.dataValues });
+            }).catch(function (error) {
+                console.log(error);
+                return res.status(500).send(error);
+    
             });
     });
 
@@ -121,7 +123,13 @@ module.exports = function (app) {
             },
             group: ['style'],
             limit: autosuggestMaxReturn
-        }).then(function (styles) {
+        }).then(function (result) {
+
+            //console.log(result);
+            return res.json(result.dataValues);
+        }).catch(function (error) {
+            console.log(error);
+            return res.status(500).send(error);
 
         });
     });
