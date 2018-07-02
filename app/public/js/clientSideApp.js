@@ -493,12 +493,12 @@ $(document).ready(function () {
             beer.abv = parseFloat($('#abv').val());
             beer.ibu = parseFloat($('#ibu').val())
             beer.description = $('#description').val();
-            beer.breweryName = $('#breweryAutocomplete').val();
+            beer.brewery = $('#breweryAutocomplete').val();
             beer.address = $('#address').val();
             beer.city = $('#city').val();
             beer.state = $('#stateAutocomplete').val();
             beer.country = $('#country').val();
-            beer.zip = $('#zipCode').val();
+            beer.zipCode = $('#zipCode').val();
             beer.phone = $('#phone').val();
             beer.website = $('#website').val();
 
