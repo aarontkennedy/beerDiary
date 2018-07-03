@@ -463,9 +463,17 @@ $(document).ready(function () {
         showTheAddUpdateSection();
     });
 
+    function getCount(userData) {
+        var counts = {};
+        for (var i = 0; i < userData.rows.length; i++) {
+            counts[userData.rows[i].BeerId] = 1 + (counts[userData.rows[i].BeerId] || 0);
+        }
+        return counts;
+    }
+
     //added this outside of submit button execution so it occurs on page load
     const userID = $("input[name=userID]").val();   
-    //ajax call gets all beers consumed and count consumed by current user
+    //ajax call gets all beers consumed and unique count consumed by current user
     $.ajax({
         url: "/api/beerConsumed/" + userID,
         type: "GET",
@@ -474,6 +482,7 @@ $(document).ready(function () {
         var userData = res.result;
         //console.log(userData);
         $("#numBeersDrank").text(userData.count);
+        $("#numDifferentBeers").text(Object.keys(getCount(userData)).length);
     });
                     
 
@@ -575,13 +584,10 @@ $(document).ready(function () {
                     //console.log(userData);
                     $("#numBeersDrank").text(userData.count);
                     //Generate tally of distinct BeerId consumed by user
-                    var counts = {};
-                    for (var i = 0; i < userData.rows.length; i++) {
-                        counts[userData.rows[i].BeerId] = 1 + (counts[userData.rows[i].BeerId] || 0);
-                    }
+                    
                     //console.log(counts);
                     //Use number of keys in above counts object to get unique beers drank
-                    $("#numDifferentBeers").text(Object.keys(counts).length);
+                    $("#numDifferentBeers").text(Object.keys(getCount(userData)).length);
                 });
                 
             });
