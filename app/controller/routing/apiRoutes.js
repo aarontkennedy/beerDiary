@@ -117,16 +117,17 @@ module.exports = function (app) {
 
     app.get("/api/beerConsumed/:userID", function (req, res) {
 
-        db.BeerConsumed.findAll({
+        db.BeerConsumed.findAndCountAll({
             where: {
                 UserGoogleID: req.params.userID
             },
-            group: ['style'],
-            limit: autosuggestMaxReturn
+            include: ['Beer']
+            //group: ['style'],
+            //limit: autosuggestMaxReturn
         }).then(function (result) {
 
             //console.log(result);
-            return res.json(result.dataValues);
+            return res.json({ result: result });
         }).catch(function (error) {
             console.log(error);
             return res.status(500).send(error);

@@ -463,6 +463,20 @@ $(document).ready(function () {
         showTheAddUpdateSection();
     });
 
+    //added this outside of submit button execution so it occurs on page load
+    const userID = $("input[name=userID]").val();   
+    //ajax call gets all beers consumed and count consumed by current user
+    $.ajax({
+        url: "/api/beerConsumed/" + userID,
+        type: "GET",
+        dataType: "JSON"
+        }).then(function (res) {
+        var userData = res.result;
+        //console.log(userData);
+        $("#numBeersDrank").text(userData.count);
+    });
+                    
+
     $('#newBeerForm').on('submit', function (e) {
         e.preventDefault();
 
@@ -551,6 +565,25 @@ $(document).ready(function () {
                 showTheBeerSearch();
                 /* AND WE NEED TO UPDATE THE HISTORY */
 
+                //ajax call gets all beers consumed and count consumed by current user
+                $.ajax({
+                    url: "/api/beerConsumed/" + userID,
+                    type: "GET",
+                    dataType: "JSON"
+                }).then(function (res) {
+                    var userData = res.result;
+                    //console.log(userData);
+                    $("#numBeersDrank").text(userData.count);
+                    //Generate tally of distinct BeerId consumed by user
+                    var counts = {};
+                    for (var i = 0; i < userData.rows.length; i++) {
+                        counts[userData.rows[i].BeerId] = 1 + (counts[userData.rows[i].BeerId] || 0);
+                    }
+                    //console.log(counts);
+                    //Use number of keys in above counts object to get unique beers drank
+                    $("#numDifferentBeers").text(Object.keys(counts).length);
+                });
+                
             });
     });
 
