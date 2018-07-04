@@ -4,7 +4,7 @@
   "description": "A beer diary of all our favorite brews.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/testFrontPage.js test/testApp.js",
     "start": "node server.js"
   },
   "repository": {

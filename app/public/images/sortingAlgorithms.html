@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sorting Algorithms</title>
+</head>
+
+<body>
+
+    <h3>Initial Data Array</h3>
+    <div id="initialDataArray"></div>
+
+    <h3>Sorted Using Bubble Sort</h3>
+    <div id="bubbleSort"></div>
+
+    <h3>Sorted Using Insertion Sort</h3>
+    <div id="insertionSort"></div>
+
+    <h3>Sorted Using Selection Sort</h3>
+    <div id="selectionSort"></div>
+
+    <h3>Sorted Using Merge Sort</h3>
+    <div id="mergeSort"></div>
+
+
+    <script>
+        let arrayOfDataSolution = [];
+        const max = 20;
+
+        for (let i = 0; i <= max; i++) {
+            arrayOfDataSolution.push(i);
+        }
+
+        let arrayOfDataRandomized = arrayOfDataSolution;
+        for (let i = 1; i < arrayOfDataRandomized.length; i++) {
+            let randomIndex = Math.round(Math.random() * i);
+            let swap = arrayOfDataRandomized[randomIndex];
+            arrayOfDataRandomized[randomIndex] = arrayOfDataRandomized[i];
+            arrayOfDataRandomized[i] = swap;
+        }
+
+        initialDataArrayElement = document.getElementById("initialDataArray");
+        initialDataArrayElement.innerText = arrayOfDataRandomized;
+
+        function bubbleSort(array) {
+            console.log("bubbleSort");
+            console.log(array);
+
+            let swapNeeded = false;
+
+            do {
+                swapNeeded = false;
+                // pass through the entire array and see if any
+                // neighbors need to be swapped into the correct order.
+                // keep doing this until no swap needs to occur
+                for (let i = 1; i < array.length; i++) {
+                    if (array[i] < array[i - 1]) {
+                        swapNeeded = true;
+                        let swap = array[i - 1];
+                        array[i - 1] = array[i];
+                        array[i] = swap;
+                    }
+                }
+            } while (swapNeeded);
+
+            console.log(array);
+            return array;
+        }
+        bubbleSortElement = document.getElementById("bubbleSort");
+        bubbleSortElement.innerText = bubbleSort(arrayOfDataRandomized.slice(0));
+
+
+
+
+        function insertionSort(array) {
+            console.log("insertionSort");
+            console.log(array);
+
+            // pass through the whole array
+            for (let i = 1; i < array.length; i++) {
+                // grab the current value, move through the sorted, first 
+                // portion of the array and find where it should be inserted
+                for (let j = 0; j <= i; j++) {
+                    if (array[i] < array[j]) {
+                        let iVal = array[i];
+                        array.splice(i, 1);
+                        array.splice(j, 0, iVal);
+                        break;
+                    }
+                }
+            }
+
+            console.log(array);
+            return array;
+        }
+        insertionSortElement = document.getElementById("insertionSort");
+        insertionSortElement.innerText = insertionSort(arrayOfDataRandomized.slice(0));
+
+
+
+
+        function selectionSort(array) {
+            console.log("selectionSort");
+            console.log(array);
+
+            for (let i = 0; i < array.length; i++) {
+                // find the smallest value in the end of the array
+                // move it to the end of the sorted front portion of the array
+                let smallestIndex = i;
+                for (let j = i; j < array.length; j++) {
+                    if (array[j] < array[smallestIndex]) {
+                        smallestIndex = j;
+                    }
+                }
+                let smallestVal = array[smallestIndex];
+                array[smallestIndex] = array[i];
+                array[i] = smallestVal;
+            }
+
+            console.log(array);
+            return array;
+        }
+        selectionSortElement = document.getElementById("selectionSort");
+        selectionSortElement.innerText = selectionSort(arrayOfDataRandomized.slice(0));
+
+
+
+
+        function mergeSort(array) {
+            console.log("mergeSort");
+            console.log(array);
+
+            function splitMerge (a) {
+                if (a.length <= 1) return a; //sorted
+
+                let middle = Math.floor(a.length/2);
+                let firstHalf = a.slice(0, middle);
+                let secondHalf = a.slice(middle);
+                firstHalf = splitMerge(firstHalf);
+                secondHalf = splitMerge(secondHalf);
+
+                return merge(firstHalf, secondHalf);
+            }
+
+            function merge (a, b) {
+                let result = [];
+                while (a.length || b.length) {
+                    if (a.length && b.length) {
+                        if (a[0]<b[0]) {
+                            result.push(a[0]);
+                            a.shift();
+                        }
+                        else {
+                            result.push(b[0]);
+                            b.shift();
+                        }
+                    }
+                    else if (a.length) {
+                        result = result.concat(a);
+                        break;
+                    }
+                    else {
+                        result = result.concat(b);
+                        break;
+                    }
+                }
+                return result;
+            }
+
+            array = splitMerge(array);
+
+            console.log(array);
+            return array;
+        }
+        mergeSortElement = document.getElementById("mergeSort");
+        mergeSortElement.innerText = mergeSort(arrayOfDataRandomized.slice(0));
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
