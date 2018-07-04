@@ -581,6 +581,7 @@ $(document).ready(function () {
                     dataType: "JSON"
                 }).then(function (res) {
                     var userData = res.result;
+                    var address = userData.rows[userData.rows.length-1].Beer.brewery;
                     //console.log(userData);
                     $("#numBeersDrank").text(userData.count);
                     //Generate tally of distinct BeerId consumed by user
@@ -588,6 +589,9 @@ $(document).ready(function () {
                     //console.log(counts);
                     //Use number of keys in above counts object to get unique beers drank
                     $("#numDifferentBeers").text(Object.keys(getCount(userData)).length);
+
+                    codeAddress(address);
+                    getMyBreweries();
                 });
                 
             });
