@@ -67,7 +67,7 @@ module.exports = function (app) {
             }).catch(function (error) {
                 console.log(error);
                 return res.status(500).send(error);
-    
+
             });
     });
 
@@ -109,15 +109,22 @@ module.exports = function (app) {
             }).catch(function (error) {
                 console.log(error);
                 return res.status(500).send(error);
-    
+
             });
     });
 
-    
+
+    //[sequelize.fn('date_format', sequelize.col('date_col'), '%Y-%m-%d'), 'date_col_formed']
+
+
 
     app.get("/api/beerConsumed/:userID", function (req, res) {
 
         db.BeerConsumed.findAndCountAll({
+            attributes: ['rating',
+                'opinion',
+                [db.sequelize.fn('date_format', db.sequelize.col('BeerConsumed.updatedAt'), '%m/%Y'), 'lastDrank']
+            ],
             where: {
                 UserGoogleID: req.params.userID
             },

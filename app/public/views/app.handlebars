@@ -96,7 +96,8 @@
 
         <div class="form-group text-center">
             <button id="beerSubmit" class="btn btn-warning btn-lg" type="submit">Submit this beer! </button>
-            <button id="beerClear" class="btn btn-danger btn-lg" type="button"><i class="fas fa-ban"></i> Cancel</button>
+            <button id="beerClear" class="btn btn-danger btn-lg" type="button">
+                <i class="fas fa-ban"></i> Cancel</button>
         </div>
     </form>
 </div>
@@ -111,7 +112,8 @@
             <h3 id="chosenBeerName" class="d-inline"></h3>
         </div>
         <div class="col-4 text-right">
-            <button id="updateBeer" class="btn btn-danger btn-sm" type="button"><i class="fas fa-pencil-alt"></i> Update</button>
+            <button id="updateBeer" class="btn btn-danger btn-sm" type="button">
+                <i class="fas fa-pencil-alt"></i> Update</button>
         </div>
     </div>
     <div>
@@ -163,8 +165,10 @@
         </div>
 
         <div class="text-center mt-3">
-            <button id="signInButton" class="btn btn-warning btn-lg mt-2" type="submit"><i class="fas fa-beer"></i> I drank this beer! </button>
-            <button class="btn btn-danger mt-2" id="cancelAddBeerDrank" type="button"><i class="fas fa-ban"></i> Cancel</a>
+            <button id="signInButton" class="btn btn-warning btn-lg mt-2" type="submit">
+                <i class="fas fa-beer"></i> I drank this beer! </button>
+            <button class="btn btn-danger mt-2" id="cancelAddBeerDrank" type="button">
+                <i class="fas fa-ban"></i> Cancel</a>
         </div>
     </form>
 </div>
@@ -173,29 +177,24 @@
 <!-- User's Beer History -->
 <div id="beerHistory" class="outlineSection">
     <h3 class="text-center">Your Beer History</h3>
-    <table id="beerHistoryTable">
-    </table>
-    <div id="beerStatistics">
-        <p>
-            Total Beers Drank:
+    <div class="row" id="beerStatistics">
+        <div class="col-6">Total Beers Drank:
             <span id="numBeersDrank"></span>
-        </p>
-        <p>
-            Total Different Beers: 
-            <span id="numDifferentBeers"></span>
-        </p>
+        </div>
+        <div class="col-6">Total Different Beers:
+        <span id="numDifferentBeers"></span></div>        
     </div>
 
     <table id="beerDiary" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Date of last drink</th>
-                <th>Name</th>
+                <th>Last Drank</th>
+                <th>Beer</th>
                 <th>Style</th>
                 <th>ABV</th>
                 <th>IBU</th>
                 <th>Average Rating</th>
-                <th>Times Consumed</th>
+                <th>Consumed</th>
                 <th>Brewery</th>
             </tr>
         </thead>
@@ -208,6 +207,5 @@
 <!-- add map container-->
 
 <div id="map" class="mt-4">
-Sorry, map did not render!
+    Sorry, map did not render!
 </div>
-

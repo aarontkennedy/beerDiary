@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
     //added this outside of submit button execution so it occurs on page load
-    const userID = $("input[name=userID]").val();  
+    const userID = $("input[name=userID]").val();
 
     function getCount(userData) {
         var counts = {};
@@ -15,56 +15,56 @@ $(document).ready(function () {
     //initialize DataTable
     var diary = $('#beerDiary').DataTable({
         "pageLength": 5,
-        "scrollX" :true
+        "scrollX": true
     });
 
-      //Get user's beer history to add to table
-    function makeTable() { 
+    //Get user's beer history to add to table
+    function makeTable() {
         //empty table then refill it
-        diary.clear(); 
-    $.ajax({
-        url: "/api/beerConsumed/" + userID,
-        type: "GET",
-        dataType: "JSON"
-    }).then(function (res) {
+        diary.clear();
+        $.ajax({
+            url: "/api/beerConsumed/" + userID,
+            type: "GET",
+            dataType: "JSON"
+        }).then(function (res) {
 
-        var counts = getCount(res.result);
-        console.log(counts);
-        var userData = res.result.rows;
-        var beerArray = [];
-        
-        for (beer in counts) {
-            var count = 0;
-            for (i = 0; i < userData.length; i++) {
-                if (userData[i].Beer.id == beer) {count += userData[i].rating};
+            var counts = getCount(res.result);
+            console.log(counts);
+            var userData = res.result.rows;
+            var beerArray = [];
+
+            for (beer in counts) {
+                var count = 0;
+                for (i = 0; i < userData.length; i++) {
+                    if (userData[i].Beer.id == beer) { count += userData[i].rating };
+                }
+                var average = count / counts[beer];
+                console.log(average)
+
+                //go through list in reverse order to get most recent additions
+                for (i = userData.length - 1; i > -1; i--) {
+                    //push to temporary list to see if beer is already added on future adds
+                    if (userData[i].Beer.id == beer && !beerArray.includes(beer)) {
+                        beerArray.push(beer);
+                        var currentBeer = userData[i];
+                        console.log(currentBeer.updatedAt)
+                        diary.row.add([
+                            currentBeer.lastDrank,
+                            currentBeer.Beer.name,
+                            currentBeer.Beer.style,
+                            currentBeer.Beer.abv,
+                            currentBeer.Beer.ibu,
+                            Math.round(average * 100) / 100,
+                            counts[beer],
+                            currentBeer.Beer.brewery
+                        ]).draw();
+                    };
+                }
+
             }
-            var average = count/counts[beer];
-            console.log(average)
-            
-            //go through list in reverse order to get most recent additions
-            for (i = userData.length -1; i > -1 ; i--) {
-                //push to temporary list to see if beer is already added on future adds
-                if (userData[i].Beer.id == beer && !beerArray.includes(beer)) {
-                    beerArray.push(beer);
-                    var currentBeer = userData[i];
-                    console.log(currentBeer.updatedAt)
-                    diary.row.add([
-                        currentBeer.updatedAt,
-                        currentBeer.Beer.name,
-                        currentBeer.Beer.style,
-                        currentBeer.Beer.abv,
-                        currentBeer.Beer.ibu,
-                        Math.round(average * 100) / 100,
-                        counts[beer],
-                        currentBeer.Beer.brewery
-                    ]).draw();
-                };
-            }
 
-        }
-
-    });
-}
+        });
+    }
     makeTable();
 
     /* this is the only code needed for the landing page */
@@ -494,7 +494,7 @@ $(document).ready(function () {
     });
 
     function putBeerInDrankBeerInfo(beer) {
-        
+
         $("input[name=chosenBeerID]").val(beer.id);
         $('#chosenBeerName').text(beer.name);
         $('#chosenBeerStyle').text(beer.style);
@@ -529,21 +529,6 @@ $(document).ready(function () {
         showTheAddUpdateSection();
     });
 
-
-
-     
-    //ajax call gets all beers consumed and unique count consumed by current user
-    $.ajax({
-        url: "/api/beerConsumed/" + userID,
-        type: "GET",
-        dataType: "JSON"
-        }).then(function (res) {
-        var userData = res.result;
-        //console.log(userData);
-        $("#numBeersDrank").text(userData.count);
-        $("#numDifferentBeers").text(Object.keys(getCount(userData)).length);
-    });
-                    
 
     $('#newBeerForm').on('submit', function (e) {
         e.preventDefault();
@@ -609,15 +594,27 @@ $(document).ready(function () {
         }
     });
 
+    //ajax call gets all beers consumed and unique count consumed by current user
+    $.ajax({
+        url: "/api/beerConsumed/" + userID,
+        type: "GET",
+        dataType: "JSON"
+    }).then(function (res) {
+        var userData = res.result;
+        //console.log(userData);
+        $("#numBeersDrank").text(userData.count);
+        $("#numDifferentBeers").text(Object.keys(getCount(userData)).length);
+    });
+
     $("#beerDrankForm").on("submit", function (e) {
         e.preventDefault();
-        
+
         const beerID = $("input[name=chosenBeerID]").val();
         const userID = $("input[name=userID]").val();
 
 
         if (!beerID || !userID) {
-            throw new Error ("beerId and userID not set!");
+            throw new Error("beerId and userID not set!");
         }
 
         let beerConsumed = {
@@ -643,11 +640,11 @@ $(document).ready(function () {
                     dataType: "JSON"
                 }).then(function (res) {
                     var userData = res.result;
-                    var currentBeer = userData.rows[userData.rows.length-1].Beer;
+                    var currentBeer = userData.rows[userData.rows.length - 1].Beer;
                     //console.log(userData);
                     $("#numBeersDrank").text(userData.count);
                     //Generate tally of distinct BeerId consumed by user
-                    
+
                     //console.log(counts);
                     //Use number of keys in above counts object to get unique beers drank
                     $("#numDifferentBeers").text(Object.keys(getCount(userData)).length);
@@ -657,7 +654,7 @@ $(document).ready(function () {
                     codeAddress(currentBeer);
                     getMyBreweries();
                 });
-                
+
             });
     });
 
