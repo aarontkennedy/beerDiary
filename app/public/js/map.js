@@ -131,13 +131,14 @@ function codeAddress(currentBeer) {
 }
 
 function initMap() {
-
     geocoder = new google.maps.Geocoder();
     var myLocation = { lat: 37.09024, lng: -95.712891 };
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 3,
         center: myLocation
     });
+
+    getMyBreweries();
 
     
 /*  
