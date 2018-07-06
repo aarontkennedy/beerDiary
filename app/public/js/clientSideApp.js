@@ -68,7 +68,6 @@ $(document).ready(function () {
             
             var currentBeer = recentData.pop();
             console.log(currentBeer);
-
             if (beerArray.indexOf(currentBeer.Beer.name) == -1) {
                 diary.row.add([
                     beer.updatedAt,
@@ -80,9 +79,7 @@ $(document).ready(function () {
             ]).draw();
             
             beerArray.push(currentBeer.Beer.name);
-
             console.log(currentBeer);
-
             }
             
             
