@@ -68,7 +68,6 @@ $(document).ready(function () {
             
             var currentBeer = recentData.pop();
             console.log(currentBeer);
-
             if (beerArray.indexOf(currentBeer.Beer.name) == -1) {
                 diary.row.add([
                     beer.updatedAt,
@@ -80,9 +79,7 @@ $(document).ready(function () {
             ]).draw();
             
             beerArray.push(currentBeer.Beer.name);
-
             console.log(currentBeer);
-
             }
             
             
@@ -693,62 +690,3 @@ $(document).ready(function () {
     });
 
 });
-
-$(document).ready(function(){
-    console.log("Working")
-    function initializeAdvertisement(){
-        var advertOne = `<div class = "col">
-        <script type="text/javascript">
-        amzn_assoc_tracking_id = "mybeerdiary-20";
-        amzn_assoc_ad_mode = "manual";
-        amzn_assoc_ad_type = "smart";
-        amzn_assoc_marketplace = "amazon";
-        amzn_assoc_region = "US";
-        amzn_assoc_design = "enhanced_links";
-        amzn_assoc_asins = "B0170NWHDM";
-        amzn_assoc_placement = "adunit";
-        amzn_assoc_linkid = "fe75ea87599dc3c197012203bf2906d0";
-        </script>
-        <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-        </div>`;
-        $("#advertisement").append(advertOne);
-        // var advertTwo = `<div class = "col">
-        // <script type="text/javascript">
-        // amzn_assoc_tracking_id = "mybeerdiary-20";
-        // amzn_assoc_ad_mode = "manual";
-        // amzn_assoc_ad_type = "smart";
-        // amzn_assoc_marketplace = "amazon";
-        // amzn_assoc_region = "US";
-        // amzn_assoc_design = "enhanced_links";
-        // amzn_assoc_asins = "B001FYZZI2";
-        // amzn_assoc_placement = "adunit";
-        // amzn_assoc_linkid = "dcb779289a9c9270e37365441088a5ab";
-        // </script>
-        // <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-        // </div>`;
-        // var advertThree = `<div class = "col">
-        // <script type="text/javascript">
-        // amzn_assoc_tracking_id = "mybeerdiary-20";
-        // amzn_assoc_ad_mode = "manual";
-        // amzn_assoc_ad_type = "smart";
-        // amzn_assoc_marketplace = "amazon";
-        // amzn_assoc_region = "US";
-        // amzn_assoc_design = "enhanced_links";
-        // amzn_assoc_asins = "B0026IBZSK";
-        // amzn_assoc_placement = "adunit";
-        // amzn_assoc_linkid = "33999d6cb3660ef5f789a08c3e4d179c";
-        // </script>
-        // </div>`;
-        // var options = Math.floor(Math.random() * 3);
-        // if (options = 1){
-        //     $('#advertisement').prepend(advertOne);
-        // }
-        // else if (options = 2){
-        //     $('#advertisement').prepend(advertTwo);
-        // }
-        // else if (options = 3){
-        //    $('#advertisement').prepend(advertThree);
-        // }
-    }
-    initializeAdvertisement();
-})
