@@ -6,100 +6,64 @@ $(document).ready(function () {
     function getCount(userData) {
         var counts = {};
         for (var i = 0; i < userData.rows.length; i++) {
-            counts[userData.rows[i].BeerId] = 1 + (counts[userData.rows[i].BeerId] || 0);
+            counts[userData.rows[i].Beer.id] = 1 + (counts[userData.rows[i].Beer.id] || 0);
         }
         console.log(counts);
         return counts;
-    }    
+    }
+
+    //initialize DataTable
+    var diary = $('#beerDiary').DataTable({
+        "pageLength": 5,
+        "scrollX" :true
+    });
 
       //Get user's beer history to add to table
+    function makeTable() {  
     $.ajax({
         url: "/api/beerConsumed/" + userID,
         type: "GET",
         dataType: "JSON"
     }).then(function (res) {
 
-            //initialize DataTable
-        var diary = $('#beerDiary').DataTable({
-            "pageLength": 5,
-            "scrollX" :true
-        });
         var counts = getCount(res.result);
         console.log(counts);
         var userData = res.result.rows;
         var beerArray = [];
-
-        userData.forEach(beer => {
-            var beerCount = counts[beer.Beer.id];
-            var count = 0;
-            console.log(beer.Beer.id);
-            for (i = 0; i < userData.length; i++) {
-                if (userData[i].Beer.id == beer.Beer.id) {count += userData[i].rating};
-            }
-            var average = count/beerCount;
-            console.log(average);
-            var currentBeer = userData.pop();
-            
-            
-    
-
-            if (beerArray.indexOf(currentBeer.Beer.name) == -1) {
-                beerArray.push(currentBeer.Beer.name);
-                
-
-                console.log(currentBeer.name + counts);
-                
-
-                console.log(beerArray);
-                diary.row.add([
-                    currentBeer.updatedAt,
-                    currentBeer.Beer.name,
-                    currentBeer.Beer.style,
-                    currentBeer.Beer.abv,
-                    currentBeer.Beer.ibu,
-                    average,
-                    beerCount
-            ]).draw();}
-            });
-        //draw() is set to execute after every iteration, could be more efficient
-        /*
-        recentData.map(beer => {
-            //reverse order of array since last item will be most recent
-            
-            var currentBeer = recentData.pop();
-            console.log(currentBeer);
-
-            if (beerArray.indexOf(currentBeer.Beer.name) == -1) {
-                diary.row.add([
-                    beer.updatedAt,
-                    beer.Beer.name,
-                    beer.Beer.style,
-                    beer.Beer.abv,
-                    beer.Beer.ibu,
-                    beer.rating
-            ]).draw();
-            
-            beerArray.push(currentBeer.Beer.name);
-
-            console.log(currentBeer);
-
-            }
-            
-            
-           });*/
-        console.log(userData);
-
-        /*<th>Date</th>
-                <th>Name</th>
-                <th>Style</th>
-                <th>ABV</th>
-                <th>IBU</th>
-                <th>Rating</th>
-        */
         
+        for (beer in counts) {
+            var count = 0;
+            for (i = 0; i < userData.length; i++) {
+                if (userData[i].Beer.id == beer) {count += userData[i].rating};
+            }
+            var average = count/counts[beer];
+            console.log(average)
+            
+            //go through list in reverse order to get most recent additions
+            for (i = userData.length -1; i > -1 ; i--) {
+                //push to temporary list to see if beer is already added on future adds
+                if (userData[i].Beer.id == beer && !beerArray.includes(beer)) {
+                    beerArray.push(beer);
+                    var currentBeer = userData[i];
+                    console.log(currentBeer.updatedAt)
+                    diary.row.add([
+                        currentBeer.updatedAt,
+                        currentBeer.Beer.name,
+                        currentBeer.Beer.style,
+                        currentBeer.Beer.abv,
+                        currentBeer.Beer.ibu,
+                        Math.round(average * 100) / 100,
+                        counts[beer],
+                        currentBeer.Beer.brewery
+                    ]).draw();
+                };
+            }
+
+        }
 
     });
-    
+}
+    makeTable();
 
     /* this is the only code needed for the landing page */
     function initializeDate() {
@@ -636,7 +600,7 @@ $(document).ready(function () {
                 $.post("/api/beers", beer)
                     .then(function (insertedID) {
                         console.log(insertedID);
-                        beer.id = insertedID;
+                        beer.id = insertedID.id;
                         putBeerInDrankBeerInfo(beer);
                     });
             }
@@ -649,6 +613,7 @@ $(document).ready(function () {
         const beerID = $("input[name=chosenBeerID]").val();
         const userID = $("input[name=userID]").val();
 
+
         if (!beerID || !userID) {
             throw new Error ("beerId and userID not set!");
         }
@@ -659,6 +624,8 @@ $(document).ready(function () {
             BeerId: beerID,
             UserGoogleID: userID
         };
+        console.log('hi');
+        console.log(beerConsumed.BeerId);
 
         $.post("/api/beerConsumed", beerConsumed)
             .then(function (result) {
@@ -683,7 +650,7 @@ $(document).ready(function () {
                     //Use number of keys in above counts object to get unique beers drank
                     $("#numDifferentBeers").text(Object.keys(getCount(userData)).length);
 
-                    
+                    makeTable();
 
                     codeAddress(currentBeer);
                     getMyBreweries();
