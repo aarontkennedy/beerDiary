@@ -36,6 +36,7 @@ $(document).ready(function () {
             for (i = 0; i < userData.length; i++) {
                 if (userData[i].Beer.id == beer) {count += userData[i].rating};
             }
+<<<<<<< HEAD
             var average = count/counts[beer];
             console.log(average)
             
@@ -57,6 +58,52 @@ $(document).ready(function () {
                         currentBeer.Beer.brewery
                     ]).draw();
                 };
+=======
+            var average = count/beerCount;
+            console.log(average);
+            var currentBeer = userData.pop();
+            
+            
+    
+
+            if (beerArray.indexOf(currentBeer.Beer.name) == -1) {
+                beerArray.push(currentBeer.Beer.name);
+                
+
+                console.log(currentBeer.name + counts);
+                
+
+                console.log(beerArray);
+                diary.row.add([
+                    currentBeer.updatedAt,
+                    currentBeer.Beer.name,
+                    currentBeer.Beer.style,
+                    currentBeer.Beer.abv,
+                    currentBeer.Beer.ibu,
+                    average,
+                    beerCount
+            ]).draw();}
+            });
+        //draw() is set to execute after every iteration, could be more efficient
+        /*
+        recentData.map(beer => {
+            //reverse order of array since last item will be most recent
+            
+            var currentBeer = recentData.pop();
+            console.log(currentBeer);
+            if (beerArray.indexOf(currentBeer.Beer.name) == -1) {
+                diary.row.add([
+                    beer.updatedAt,
+                    beer.Beer.name,
+                    beer.Beer.style,
+                    beer.Beer.abv,
+                    beer.Beer.ibu,
+                    beer.rating
+            ]).draw();
+            
+            beerArray.push(currentBeer.Beer.name);
+            console.log(currentBeer);
+>>>>>>> ef1dde065c7b5a69d8516e6d4769322a08508040
             }
 
         }
