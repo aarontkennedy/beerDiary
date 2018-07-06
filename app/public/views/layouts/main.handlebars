@@ -15,14 +15,14 @@
     <header class="container mb-4">
         <div class="row p-2">
             <div class - "col text-left">
-                <img id="logo" class="mr-2" src="..\images\weblogo.png" alt="beerDiary-logo">
+                <img id="logo" src="..\images\weblogo.png" alt="beerDiary-logo">
             </div>
-            <div class="col text-right mt-3">
+            <div class="col text-right">
                 {{#if signedIn}} 
                     {{#if user.name}} 
                     <span class="d-none d-md-inline">Welcome, {{user.name}}! </span>
                     {{/if}}
-                <a id="signInButton" class="btn btn-warning" href="/" role="button">Sign Out
+                <a id="signInButton" class="btn btn-warning btn-sm" href="/" role="button">Sign Out
                     <i title="Google Signout" class="fab fa-google"></i>
                 </a>
                 {{else}} 
