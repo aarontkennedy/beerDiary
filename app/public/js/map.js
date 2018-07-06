@@ -1,4 +1,5 @@
 var map;
+var markers = [];
 const userID = $("input[name=userID]").val();   
 
 function getMyBreweries() {
@@ -10,7 +11,7 @@ function getMyBreweries() {
         dataType: "JSON",
         success: function (json) {
             
-            
+            reloadMarkers();
             breweries = [];
             
             var userBeers = json.result.rows;
@@ -89,12 +90,15 @@ function reloadMarkers() {
     markers = [];
 
     // Call set markers to re-add markers
-    setMarkers(eventLoc);
+    //setMarkers(eventLoc);
 }
 
-function codeAddress(address) {
+function codeAddress(currentBeer) {
     console.log('codeaddress executed');
-    var address = address;
+    var name = currentBeer.brewery;
+    var address = currentBeer.address;
+    var phone = currentBeer.phone;
+    var website = currentBeer.website;
 
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
@@ -104,6 +108,22 @@ function codeAddress(address) {
             map: map,
             position: results[0].geometry.location
         });
+
+        var infowindow = new google.maps.InfoWindow();
+
+          var content = `<p class=\'text-dark\'>Brewery: ${name}</p>
+          <p class=\'text-dark\'>Address: ${address}</p>
+          <p class=\'text-dark\'>Phone #: ${phone}</p>
+          <p class=\'text-dark\'><a href='${website}'> Brewery Website</a></p>`;
+          
+  
+          //google.maps.event.addListener(marker,'click', markerWindow(marker,content,infowindow));  
+          google.maps.event.addListener(marker,'mouseover', markerWindow(marker,content,infowindow));  
+          google.maps.event.addListener(marker,'mousedown', markerWindow(marker,content,infowindow));  
+          google.maps.event.addListener(marker,'mouseout', closeWindow(marker, infowindow));  
+          // Push marker to markers array
+          markers.push(marker);
+          marker.setMap(map);
       } else {
         console.log('Geocode was not successful for the following reason: ' + status);
       }
