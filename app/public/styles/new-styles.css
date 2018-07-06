@@ -1,5 +1,5 @@
 body, html {
-    background-color: brown;
+    background-color: #4b2f2f;
     background-image: url("/images/wood.jpg");
     height: 100%;
     background-position: center;
@@ -462,4 +462,8 @@ table.dataTable {
       float: none;
       text-align: center; }
     .dataTables_wrapper .dataTables_filter {
-      margin-top: 0.5em; } }
+      margin-top: 0.5em; } 
+    
+    #beerDiary_length, #beerDiary_info { display:none; }
+    
+    }
