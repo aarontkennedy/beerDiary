@@ -43,10 +43,13 @@ function setMarkers(beers) {
 
     var name = beers.brewery;
     var address = beers.address;
+    var city = beers.city;
+    var state = beers.state;
     var phone = beers.phone;
     var website = beers.website;
+    console.log();
 
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder.geocode( { 'address': `${address}, ${city}, ${state}`}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var marker = new google.maps.Marker({
               map: map,
@@ -97,10 +100,13 @@ function codeAddress(currentBeer) {
     console.log('codeaddress executed');
     var name = currentBeer.brewery;
     var address = currentBeer.address;
+    var city = currentBeer.city;
+    var state = currentBeer.state;
     var phone = currentBeer.phone;
     var website = currentBeer.website;
+    console.log(`${address}, ${city}, ${state}`);
 
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder.geocode( { 'address': `${address}, ${city}, ${state}`}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
