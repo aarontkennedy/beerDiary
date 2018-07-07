@@ -63,9 +63,9 @@ function setMarkers(beers) {
           
   
           //google.maps.event.addListener(marker,'click', markerWindow(marker,content,infowindow));  
-          google.maps.event.addListener(marker,'mouseover', markerWindow(marker,content,infowindow));  
+          //google.maps.event.addListener(marker,'mouseover', markerWindow(marker,content,infowindow));  
           google.maps.event.addListener(marker,'mousedown', markerWindow(marker,content,infowindow));  
-          google.maps.event.addListener(marker,'mouseout', closeWindow(marker, infowindow));  
+          //google.maps.event.addListener(marker,'mouseout', closeWindow(marker, infowindow));  
           // Push marker to markers array
           markers.push(marker);
           marker.setMap(map);
@@ -118,9 +118,9 @@ function codeAddress(currentBeer) {
           
   
           //google.maps.event.addListener(marker,'click', markerWindow(marker,content,infowindow));  
-          google.maps.event.addListener(marker,'mouseover', markerWindow(marker,content,infowindow));  
+          //google.maps.event.addListener(marker,'mouseover', markerWindow(marker,content,infowindow));  
           google.maps.event.addListener(marker,'mousedown', markerWindow(marker,content,infowindow));  
-          google.maps.event.addListener(marker,'mouseout', closeWindow(marker, infowindow));  
+          //google.maps.event.addListener(marker,'mouseout', closeWindow(marker, infowindow));  
           // Push marker to markers array
           markers.push(marker);
           marker.setMap(map);
